@@ -1,0 +1,48 @@
+---
+import TerritoriesConvergence from "../components/convergence/TerritoriesConvergence.astro";
+import "../styles/sections/territories.css";
+---
+
+<section
+  id="territories"
+  class="territories"
+  aria-labelledby="territories-title"
+  data-territories
+>
+  <TerritoriesConvergence />
+
+  <div class="territories__content relational-grid">
+    <header class="territories__header">
+      <p class="territories__index" aria-hidden="true">02</p>
+      <h2 class="territories__context" id="territories-title">
+        Onde essa engenharia ganha forma
+      </h2>
+    </header>
+
+    <div class="territories__positions">
+      <article class="territory territory--web">
+        <h3 class="territory__title">WEB</h3>
+        <p class="territory__description">
+          Sites criados, reconstruídos e evoluídos como software que precisa
+          funcionar bem e continuar fazendo sentido depois da entrega.
+        </p>
+      </article>
+
+      <article class="territory territory--products">
+        <h3 class="territory__title">PRODUTOS</h3>
+        <p class="territory__description">
+          Quando uma necessidade precisa ganhar interface, comportamento e
+          estrutura para se tornar algo que alguém realmente possa usar.
+        </p>
+      </article>
+
+      <article class="territory territory--systems">
+        <h3 class="territory__title">SISTEMAS</h3>
+        <p class="territory__description">
+          Quando o trabalho está menos no que se vê e mais em fazer processos,
+          dados e softwares diferentes funcionarem como uma coisa só.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>

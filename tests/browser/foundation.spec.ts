@@ -90,6 +90,112 @@ test("recomposes supporting copy away from the headline on mobile", async ({
   expect(supportingBox!.x).toBeGreaterThan(headlineBox!.x + 30);
 });
 
+test("renders Territórios in semantic reading order with the frozen copy", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-territories]");
+  const headings = section.getByRole("heading");
+
+  await expect(
+    section.getByRole("heading", {
+      level: 2,
+      name: "Onde essa engenharia ganha forma",
+    }),
+  ).toBeVisible();
+  await expect(headings).toHaveCount(4);
+  await expect(headings.nth(1)).toHaveText("WEB");
+  await expect(headings.nth(2)).toHaveText("PRODUTOS");
+  await expect(headings.nth(3)).toHaveText("SISTEMAS");
+  await expect(
+    section.getByText(
+      "Sites criados, reconstruídos e evoluídos como software que precisa funcionar bem e continuar fazendo sentido depois da entrega.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(
+    section.getByText(
+      "Quando uma necessidade precisa ganhar interface, comportamento e estrutura para se tornar algo que alguém realmente possa usar.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(
+    section.getByText(
+      "Quando o trabalho está menos no que se vê e mais em fazer processos, dados e softwares diferentes funcionarem como uma coisa só.",
+      { exact: true },
+    ),
+  ).toBeVisible();
+  await expect(section.getByRole("button")).toHaveCount(0);
+  await expect(section.getByRole("link")).toHaveCount(0);
+});
+
+test("keeps Territórios geometry decorative and purpose-built", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const field = page.locator("[data-territories-convergence]");
+  await expect(field).toHaveCount(2);
+
+  for (const geometry of await field.all()) {
+    await expect(geometry).toHaveAttribute("aria-hidden", "true");
+    await expect(geometry).toHaveAttribute("focusable", "false");
+  }
+});
+
+test("places territories as unequal positions in one desktop field", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const territories = await Promise.all(
+    ["WEB", "PRODUTOS", "SISTEMAS"].map(async (name) => {
+      const heading = page.getByRole("heading", { level: 3, name });
+      return {
+        box: await heading.boundingBox(),
+        size: await heading.evaluate((element) =>
+          Number.parseFloat(getComputedStyle(element).fontSize),
+        ),
+      };
+    }),
+  );
+
+  const [web, products, systems] = territories;
+  expect(web.box).not.toBeNull();
+  expect(products.box).not.toBeNull();
+  expect(systems.box).not.toBeNull();
+  expect(web.box!.x).toBeLessThan(products.box!.x);
+  expect(products.box!.x).toBeLessThan(systems.box!.x);
+  expect(new Set(territories.map(({ box }) => Math.round(box!.y))).size).toBe(
+    3,
+  );
+  expect(new Set(territories.map(({ size }) => size)).size).toBe(1);
+});
+
+test("keeps Territórios readable without client-side JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+
+  await page.goto("/");
+
+  await expect(page.locator("[data-territories]")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 3, name: "WEB" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 3, name: "PRODUTOS" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 3, name: "SISTEMAS" }),
+  ).toBeVisible();
+
+  await context.close();
+});
+
 test("uses system dark preference when no explicit preference exists", async ({
   browser,
 }) => {
