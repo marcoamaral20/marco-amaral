@@ -1,0 +1,62 @@
+---
+import PracticeConvergence from "../components/convergence/PracticeConvergence.astro";
+import "../styles/sections/practice.css";
+---
+
+<section
+  id="practice"
+  class="practice"
+  aria-labelledby="practice-title"
+  data-practice
+>
+  <PracticeConvergence />
+
+  <div class="practice__content relational-grid">
+    <header class="practice__header">
+      <p class="practice__index" aria-hidden="true">04</p>
+      <h2 class="practice__title" id="practice-title">Marco / Prática</h2>
+    </header>
+
+    <div class="practice__note" data-practice-note data-copy-status="pending">
+      <p class="practice__copy-status">COPY PENDING</p>
+      <p>
+        Espaço reservado para a nota final em primeira pessoa. O texto deverá
+        abordar a entrada em problemas ainda pouco definidos, a leitura de
+        contexto antes da decisão, a responsabilidade até a execução e a
+        convivência entre negócio, produto e engenharia, sem transformar
+        complexidade em objetivo. A redação final substituirá este marcador sem
+        alterar a composição.
+      </p>
+    </div>
+
+    <ol class="practice__principles" aria-label="Princípios de prática">
+      <li
+        class="practice__principle practice__principle--first"
+        data-practice-principle
+      >
+        01 — ENTENDER ANTES DE PRESCREVER
+      </li>
+      <li
+        class="practice__principle practice__principle--second"
+        data-practice-principle
+      >
+        02 — COMPLEXIDADE PRECISA SE JUSTIFICAR
+      </li>
+    </ol>
+
+    <footer class="practice__identity">
+      <div class="practice__facts">
+        <p>Marco Amaral</p>
+        <p>Software Engineer · Brasil</p>
+      </div>
+
+      <div
+        class="practice__verification"
+        aria-label="Destinos de verificação pendentes"
+      >
+        <span data-verification-position>LinkedIn — destino pendente</span>
+        <span data-verification-position>GitHub — destino pendente</span>
+      </div>
+    </footer>
+  </div>
+</section>

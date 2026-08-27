@@ -8,7 +8,9 @@ test("renders the frozen Hero copy with a single primary heading", async ({
 
   await expect(page.getByRole("banner")).toBeVisible();
   await expect(page.getByRole("main")).toBeVisible();
-  await expect(page.getByText("Marco Amaral", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("banner").getByText("Marco Amaral", { exact: true }),
+  ).toBeVisible();
   await expect(
     page.getByText("Software Engineer", { exact: true }),
   ).toBeVisible();
@@ -324,6 +326,93 @@ test("keeps Selected Work readable without client-side JavaScript", async ({
   ).toBeVisible();
   await expect(
     section.getByRole("heading", { level: 3, name: "SISTEMAS" }),
+  ).toBeVisible();
+
+  await context.close();
+});
+
+test("renders Marco / Prática with pending editorial copy and minimal identity", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-practice]");
+  await expect(
+    section.getByRole("heading", { level: 2, name: "Marco / Prática" }),
+  ).toBeVisible();
+  await expect(section.locator("[data-practice-note]")).toHaveAttribute(
+    "data-copy-status",
+    "pending",
+  );
+  await expect(
+    section.getByText("COPY PENDING", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("Marco Amaral", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("Software Engineer · Brasil", { exact: true }),
+  ).toBeVisible();
+  await expect(section.locator("img")).toHaveCount(0);
+});
+
+test("renders exactly the two approved practice principles", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-practice]");
+  const principles = section.locator("[data-practice-principle]");
+
+  await expect(principles).toHaveCount(2);
+  await expect(principles.nth(0)).toHaveText(
+    "01 — ENTENDER ANTES DE PRESCREVER",
+  );
+  await expect(principles.nth(1)).toHaveText(
+    "02 — COMPLEXIDADE PRECISA SE JUSTIFICAR",
+  );
+});
+
+test("reserves verification-link positions without inventing destinations", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-practice]");
+  const positions = section.locator("[data-verification-position]");
+
+  await expect(positions).toHaveCount(2);
+  await expect(positions.nth(0)).toContainText("LinkedIn");
+  await expect(positions.nth(1)).toContainText("GitHub");
+  await expect(section.getByRole("link")).toHaveCount(0);
+});
+
+test("keeps Practice residual geometry decorative", async ({ page }) => {
+  await page.goto("/");
+
+  const geometry = page.locator("[data-practice-convergence]");
+  await expect(geometry).toHaveCount(1);
+  await expect(geometry).toHaveAttribute("aria-hidden", "true");
+  await expect(geometry).toHaveAttribute("focusable", "false");
+});
+
+test("keeps Marco / Prática readable without client-side JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+
+  await page.goto("/");
+
+  const section = page.locator("[data-practice]");
+  await expect(section).toBeVisible();
+  await expect(
+    section.getByText("01 — ENTENDER ANTES DE PRESCREVER", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("02 — COMPLEXIDADE PRECISA SE JUSTIFICAR", {
+      exact: true,
+    }),
   ).toBeVisible();
 
   await context.close();
