@@ -1,0 +1,133 @@
+---
+import ContactConvergence from "../components/convergence/ContactConvergence.astro";
+import "../styles/sections/contact.css";
+
+const branches = [
+  {
+    key: "existing",
+    question: "O que está pedindo atenção agora?",
+    options: [
+      "Quero melhorar",
+      "Talvez precise mudar bastante",
+      "Não está funcionando tão bem",
+      "Prefiro explicar",
+    ],
+  },
+  {
+    key: "emerging",
+    question: "Como isso está tomando forma?",
+    options: [
+      "Já tenho uma direção",
+      "Ainda estou entendendo",
+      "Quero tornar isso concreto",
+      "Prefiro explicar",
+    ],
+  },
+  {
+    key: "problem",
+    question: "Como você está enxergando isso hoje?",
+    options: [
+      "Já consigo explicar",
+      "Ainda estou tentando entender",
+      "Tem partes que não funcionam bem juntas",
+      "Prefiro explicar",
+    ],
+  },
+] as const;
+---
+
+<section
+  id="contact"
+  class="contact"
+  aria-labelledby="contact-title"
+  data-contact
+>
+  <ContactConvergence />
+
+  <div class="contact__content relational-grid">
+    <p class="contact__index" aria-hidden="true">05</p>
+    <p class="contact__label">Contact</p>
+
+    <header class="contact__intro">
+      <h2 id="contact-title">Comece pelo que você tem.</h2>
+      <p>O resto pode ganhar clareza na conversa.</p>
+    </header>
+
+    <div class="contact__router">
+      <p
+        class="contact__context"
+        data-contact-context
+        aria-label="Contexto escolhido"
+      >
+      </p>
+
+      <div class="contact__decision" data-decision-one>
+        <h3 tabindex="-1">De onde estamos partindo?</h3>
+        <div class="contact__choices">
+          <button
+            type="button"
+            data-first-choice="existing"
+            aria-pressed="false"
+          >
+            Já tenho algo
+          </button>
+          <button
+            type="button"
+            data-first-choice="emerging"
+            aria-pressed="false"
+          >
+            Estou começando algo
+          </button>
+          <button
+            type="button"
+            data-first-choice="problem"
+            aria-pressed="false"
+          >
+            Tem algo que preciso resolver
+          </button>
+          <button type="button" data-first-choice="direct" aria-pressed="false">
+            Prefiro explicar direto
+          </button>
+        </div>
+      </div>
+
+      {
+        branches.map((branch) => (
+          <div class="contact__decision" data-decision-two={branch.key} hidden>
+            <h3 tabindex="-1">{branch.question}</h3>
+            <div class="contact__choices">
+              {branch.options.map((option) => (
+                <button type="button" data-second-choice={option}>
+                  {option}
+                </button>
+              ))}
+            </div>
+            <div class="contact__quiet-controls">
+              <button type="button" data-contact-change>
+                Alterar ponto de partida
+              </button>
+              <button type="button" data-contact-restart hidden>
+                Recomeçar
+              </button>
+            </div>
+          </div>
+        ))
+      }
+
+      <div class="contact__ready" data-contact-ready hidden>
+        <h3 tabindex="-1">Já temos um ponto de partida.</h3>
+        <p>Podemos seguir daqui.</p>
+        <div class="contact__quiet-controls">
+          <button type="button" data-contact-back>Voltar</button>
+          <button type="button" data-contact-restart hidden>Recomeçar</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="contact__pending" data-contact-fallback>
+      CONTACT DESTINATION PENDING
+    </p>
+  </div>
+</section>
+
+<script src="../scripts/contact.ts"></script>

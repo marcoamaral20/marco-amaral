@@ -418,6 +418,252 @@ test("keeps Marco / Prática readable without client-side JavaScript", async ({
   await context.close();
 });
 
+const contactBranches = [
+  {
+    first: "Já tenho algo",
+    question: "O que está pedindo atenção agora?",
+    options: [
+      "Quero melhorar",
+      "Talvez precise mudar bastante",
+      "Não está funcionando tão bem",
+      "Prefiro explicar",
+    ],
+  },
+  {
+    first: "Estou começando algo",
+    question: "Como isso está tomando forma?",
+    options: [
+      "Já tenho uma direção",
+      "Ainda estou entendendo",
+      "Quero tornar isso concreto",
+      "Prefiro explicar",
+    ],
+  },
+  {
+    first: "Tem algo que preciso resolver",
+    question: "Como você está enxergando isso hoje?",
+    options: [
+      "Já consigo explicar",
+      "Ainda estou tentando entender",
+      "Tem partes que não funcionam bem juntas",
+      "Prefiro explicar",
+    ],
+  },
+] as const;
+
+test("renders Contact with its exact intro and first decisions", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-contact]");
+  await expect(
+    section.getByRole("heading", {
+      level: 2,
+      name: "Comece pelo que você tem.",
+    }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("O resto pode ganhar clareza na conversa.", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "De onde estamos partindo?",
+    }),
+  ).toBeVisible();
+  await expect(section.locator("[data-decision-one] button")).toHaveCount(4);
+  await expect(
+    section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
+  ).toBeVisible();
+  await expect(section.getByRole("link")).toHaveCount(0);
+});
+
+for (const branch of contactBranches) {
+  for (const option of branch.options) {
+    test(`${branch.first} resolves through ${option}`, async ({ page }) => {
+      await page.goto("/");
+
+      const section = page.locator("[data-contact]");
+      await section
+        .getByRole("button", { name: branch.first, exact: true })
+        .click();
+      await expect(
+        section.getByRole("heading", { level: 3, name: branch.question }),
+      ).toBeFocused();
+      await section.getByRole("button", { name: option, exact: true }).click();
+
+      await expect(
+        section.getByRole("heading", {
+          level: 3,
+          name: "Já temos um ponto de partida.",
+        }),
+      ).toBeFocused();
+      await expect(
+        section.getByText("Podemos seguir daqui.", { exact: true }),
+      ).toBeVisible();
+      await expect(section.locator("[data-contact-context]")).toContainText(
+        `${branch.first} → ${option}`,
+      );
+    });
+  }
+}
+
+test("the direct path skips the contextual question", async ({ page }) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-contact]");
+  await section
+    .getByRole("button", { name: "Prefiro explicar direto", exact: true })
+    .click();
+
+  await expect(section.locator("[data-decision-two]:visible")).toHaveCount(0);
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "Já temos um ponto de partida.",
+    }),
+  ).toBeFocused();
+  await expect(section.locator("[data-contact-context]")).toHaveText(
+    "Prefiro explicar direto",
+  );
+});
+
+test("keeps Contact convergence decorative", async ({ page }) => {
+  await page.goto("/");
+
+  const geometry = page.locator("[data-contact-convergence]");
+  await expect(geometry).toHaveCount(1);
+  await expect(geometry).toHaveAttribute("aria-hidden", "true");
+  await expect(geometry).toHaveAttribute("focusable", "false");
+});
+
+test("back and changing the first decision clear incompatible context", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-contact]");
+  await section
+    .getByRole("button", { name: "Já tenho algo", exact: true })
+    .click();
+  await section
+    .getByRole("button", { name: "Quero melhorar", exact: true })
+    .click();
+  await section.getByRole("button", { name: "Voltar", exact: true }).click();
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "O que está pedindo atenção agora?",
+    }),
+  ).toBeFocused();
+
+  await section
+    .getByRole("button", { name: "Alterar ponto de partida", exact: true })
+    .click();
+  await section
+    .getByRole("button", { name: "Estou começando algo", exact: true })
+    .click();
+  await expect(section.locator("[data-contact-context]")).toHaveText(
+    "Estou começando algo",
+  );
+  await expect(
+    section.getByRole("button", { name: "Quero melhorar", exact: true }),
+  ).toHaveCount(0);
+});
+
+test("restart clears the router and never navigates externally", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const initialUrl = page.url();
+
+  const section = page.locator("[data-contact]");
+  await section
+    .getByRole("button", { name: "Estou começando algo", exact: true })
+    .click();
+  await section
+    .getByRole("button", { name: "Ainda estou entendendo", exact: true })
+    .click();
+  await section.getByRole("button", { name: "Recomeçar", exact: true }).click();
+
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "De onde estamos partindo?",
+    }),
+  ).toBeFocused();
+  await expect(section.locator("[data-contact-context]")).toBeEmpty();
+  expect(page.url()).toBe(initialUrl);
+});
+
+test("completes Contact with keyboard controls and visible focus", async ({
+  page,
+}) => {
+  await page.goto("/#contact");
+
+  const section = page.locator("[data-contact]");
+  const firstChoice = section.getByRole("button", {
+    name: "Já tenho algo",
+    exact: true,
+  });
+  await firstChoice.focus();
+  await page.keyboard.press("Enter");
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "O que está pedindo atenção agora?",
+    }),
+  ).toBeFocused();
+
+  const secondChoice = section.getByRole("button", {
+    name: "Quero melhorar",
+    exact: true,
+  });
+  await secondChoice.focus();
+  await expect
+    .poll(() =>
+      secondChoice.evaluate((button) => getComputedStyle(button).outlineStyle),
+    )
+    .not.toBe("none");
+  await page.keyboard.press("Space");
+  await expect(
+    section.getByRole("heading", {
+      level: 3,
+      name: "Já temos um ponto de partida.",
+    }),
+  ).toBeFocused();
+  await expect(secondChoice).toHaveCount(0);
+});
+
+test("keeps Contact truthful and readable without JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("/#contact");
+
+  const section = page.locator("[data-contact]");
+  await expect(
+    section.getByRole("heading", {
+      level: 2,
+      name: "Comece pelo que você tem.",
+    }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("O resto pode ganhar clareza na conversa.", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
+  ).toBeVisible();
+
+  await context.close();
+});
+
 test("uses system dark preference when no explicit preference exists", async ({
   browser,
 }) => {
