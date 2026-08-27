@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light;
+
+  --color-canvas: #f7f9fa;
+  --color-surface: #eef2f4;
+  --color-foreground: #111518;
+  --color-muted: #697279;
+  --color-line: #cdd4d8;
+  --color-border: #dde2e5;
+  --color-sky-primary: #a8c2d1;
+  --color-sky-soft: #d2e3eb;
+  --color-sky-highlight: #e9f1f5;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-48: 12rem;
+
+  --font-sans-development: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --font-sans: var(--font-sans-development);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --text-metadata: 0.75rem;
+  --text-utility: 0.875rem;
+  --text-body: 1rem;
+  --text-body-large: 1.25rem;
+  --leading-body: 1.55;
+  --tracking-tight: -0.012em;
+  --tracking-label: 0.04em;
+
+  --line-primary: 1px;
+  --line-secondary-opacity: 0.62;
+  --radius-structural: 0;
+  --radius-functional: 0.25rem;
+
+  --measure-long-form: 40rem;
+  --measure-supporting: 28rem;
+  --measure-practice: 38.75rem;
+  --measure-case: 30rem;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-canvas: #101417;
+  --color-surface: #171c20;
+  --color-foreground: #f1f4f5;
+  --color-muted: #949da3;
+  --color-line: #313a40;
+  --color-border: #252c31;
+}

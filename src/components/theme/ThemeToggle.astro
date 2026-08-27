@@ -1,0 +1,44 @@
+<div class="foundation-theme">
+  <button
+    class="theme-toggle"
+    type="button"
+    data-theme-toggle
+    aria-label="Alternar tema"
+  >
+    <span aria-hidden="true" data-theme-label>Claro</span>
+  </button>
+</div>
+
+<script>
+  import {
+    THEME_STORAGE_KEY,
+    toggleTheme,
+    type Theme,
+  } from "../../scripts/theme";
+
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  );
+  const label = button?.querySelector<HTMLElement>("[data-theme-label]");
+
+  const updateControl = (theme: Theme) => {
+    if (!button || !label) return;
+
+    const nextTheme = toggleTheme(theme);
+    const nextThemeLabel = nextTheme === "dark" ? "escuro" : "claro";
+    label.textContent = theme === "dark" ? "Escuro" : "Claro";
+    button.setAttribute("aria-label", `Usar tema ${nextThemeLabel}`);
+  };
+
+  const currentTheme = (): Theme =>
+    document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+
+  updateControl(currentTheme());
+
+  button?.addEventListener("click", () => {
+    const theme = toggleTheme(currentTheme());
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+    updateControl(theme);
+  });
+</script>

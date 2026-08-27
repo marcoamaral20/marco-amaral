@@ -1,0 +1,30 @@
+:root {
+  --grid-columns: 4;
+  --grid-margin: clamp(1.25rem, 5.64vw, 1.5rem);
+  --grid-gutter: clamp(0.75rem, 3.59vw, 1rem);
+  --grid-template: repeat(var(--grid-columns), minmax(0, 1fr));
+}
+
+.relational-grid {
+  display: grid;
+  grid-template-columns: var(--grid-template);
+  column-gap: var(--grid-gutter);
+  width: 100%;
+  padding-inline: var(--grid-margin);
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --grid-columns: 8;
+    --grid-margin: clamp(2.5rem, 5.36vw, 3rem);
+    --grid-gutter: 1.25rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  :root {
+    --grid-columns: 12;
+    --grid-margin: clamp(3rem, 5vw, 4.5rem);
+    --grid-gutter: 1.5rem;
+  }
+}

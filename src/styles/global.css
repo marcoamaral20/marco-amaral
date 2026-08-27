@@ -1,0 +1,133 @@
+@import "./tokens.css";
+@import "./fonts.css";
+@import "./grid.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 20rem;
+  background: var(--color-canvas);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-foreground);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+button,
+a {
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  appearance: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky-primary);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--color-sky-soft);
+  color: #111518;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+.site-shell {
+  min-height: 100vh;
+}
+
+.foundation-header {
+  align-items: center;
+  min-height: var(--space-24);
+}
+
+.foundation-identity {
+  grid-column: 1 / span 2;
+  margin: 0;
+  font-size: var(--text-utility);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-tight);
+}
+
+.foundation-theme {
+  grid-column: -2 / -1;
+  justify-self: end;
+}
+
+.foundation-main {
+  align-content: end;
+  min-height: calc(100vh - var(--space-24));
+  padding-block: var(--space-16);
+}
+
+.foundation-status {
+  grid-column: 1 / -1;
+  max-width: var(--measure-supporting);
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--text-metadata);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.theme-toggle {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-functional);
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--text-utility);
+}
+
+.theme-toggle:hover {
+  background: var(--color-surface);
+}
+
+@media (min-width: 48rem) {
+  .foundation-identity {
+    grid-column: 1 / span 3;
+  }
+
+  .foundation-status {
+    grid-column: 2 / span 4;
+  }
+}
+
+@media (min-width: 75rem) {
+  .foundation-identity {
+    grid-column: 1 / span 3;
+  }
+
+  .foundation-status {
+    grid-column: 2 / span 4;
+  }
+}

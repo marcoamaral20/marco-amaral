@@ -1,0 +1,54 @@
+---
+import ThemeToggle from "../components/theme/ThemeToggle.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const key = "marco-amaral-theme";
+        let stored = null;
+
+        try {
+          stored = localStorage.getItem(key);
+        } catch {
+          // Storage can be unavailable in privacy-restricted browsing contexts.
+        }
+
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : prefersDark
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="foundation-header relational-grid">
+        <h1 class="foundation-identity">Marco Amaral</h1>
+        <ThemeToggle />
+      </header>
+      <slot />
+    </div>
+  </body>
+</html>
