@@ -51,6 +51,8 @@ test("preserves the desktop headline and displaced supporting relationship", asy
 
   const headline = page.getByRole("heading", { level: 1 });
   const supporting = page.locator("[data-hero-supporting]");
+  await expect(headline).toBeVisible();
+  await expect(supporting).toBeVisible();
   const headlineBox = await headline.boundingBox();
   const supportingBox = await supporting.boundingBox();
   const headlineSize = await headline.evaluate((element) =>
@@ -150,9 +152,10 @@ test("places territories as unequal positions in one desktop field", async ({
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
 
+  const section = page.locator("[data-territories]");
   const territories = await Promise.all(
     ["WEB", "PRODUTOS", "SISTEMAS"].map(async (name) => {
-      const heading = page.getByRole("heading", { level: 3, name });
+      const heading = section.getByRole("heading", { level: 3, name });
       return {
         box: await heading.boundingBox(),
         size: await heading.evaluate((element) =>
@@ -182,15 +185,145 @@ test("keeps Territórios readable without client-side JavaScript", async ({
 
   await page.goto("/");
 
-  await expect(page.locator("[data-territories]")).toBeVisible();
+  const section = page.locator("[data-territories]");
+  await expect(section).toBeVisible();
   await expect(
-    page.getByRole("heading", { level: 3, name: "WEB" }),
+    section.getByRole("heading", { level: 3, name: "WEB" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { level: 3, name: "PRODUTOS" }),
+    section.getByRole("heading", { level: 3, name: "PRODUTOS" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { level: 3, name: "SISTEMAS" }),
+    section.getByRole("heading", { level: 3, name: "SISTEMAS" }),
+  ).toBeVisible();
+
+  await context.close();
+});
+
+test("renders Selected Work roles and transparency labels in semantic order", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-selected-work]");
+  const entries = section.locator("[data-work-entry]");
+
+  await expect(
+    section.getByRole("heading", { level: 2, name: "Selected Work" }),
+  ).toBeVisible();
+  await expect(entries).toHaveCount(3);
+  await expect(entries.nth(0)).toHaveAttribute("data-work-entry", "web");
+  await expect(entries.nth(1)).toHaveAttribute("data-work-entry", "product");
+  await expect(entries.nth(2)).toHaveAttribute("data-work-entry", "systems");
+  await expect(entries.nth(0).getByRole("heading", { level: 3 })).toHaveText(
+    "WEB",
+  );
+  await expect(entries.nth(1).getByRole("heading", { level: 3 })).toHaveText(
+    "PRODUTO",
+  );
+  await expect(entries.nth(2).getByRole("heading", { level: 3 })).toHaveText(
+    "SISTEMAS",
+  );
+  await expect(
+    section.getByText("Independent Concept", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("Produto próprio", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    section.getByText("Experiência profissional", { exact: true }),
+  ).toBeVisible();
+  await expect(section.getByText("SITUAÇÃO", { exact: true })).toHaveCount(3);
+  await expect(section.getByText("DECISÃO", { exact: true })).toHaveCount(3);
+  await expect(
+    section.getByText("O QUE PASSOU A EXISTIR", { exact: true }),
+  ).toHaveCount(3);
+  await expect(section.getByRole("button")).toHaveCount(0);
+  await expect(section.getByRole("link")).toHaveCount(0);
+});
+
+test("uses three distinct evidence compositions without fake case content", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.locator("[data-selected-work]");
+  await expect(section.locator('[data-evidence-layout="single"]')).toHaveCount(
+    1,
+  );
+  await expect(
+    section.locator('[data-evidence-layout="fragmented"]'),
+  ).toHaveCount(1);
+  await expect(
+    section.locator('[data-evidence-layout="structural"]'),
+  ).toHaveCount(1);
+  await expect(
+    section.locator(
+      '[data-evidence-layout="fragmented"] [data-evidence-region]',
+    ),
+  ).toHaveCount(3);
+  await expect(
+    section.getByText("EVIDÊNCIA RESERVADA", { exact: true }),
+  ).toHaveCount(3);
+});
+
+test("reserves the strongest single desktop evidence field for Web", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const webField = await page
+    .locator('[data-evidence-layout="single"]')
+    .boundingBox();
+  const productFragments = await page
+    .locator('[data-evidence-layout="fragmented"] [data-evidence-region]')
+    .all();
+  const productBoxes = await Promise.all(
+    productFragments.map((fragment) => fragment.boundingBox()),
+  );
+
+  expect(webField).not.toBeNull();
+  expect(productBoxes.every(Boolean)).toBe(true);
+  expect(webField!.width).toBeGreaterThanOrEqual(650);
+  expect(webField!.height).toBeGreaterThanOrEqual(440);
+  expect(webField!.width * webField!.height).toBeGreaterThan(
+    Math.max(...productBoxes.map((box) => box!.width * box!.height)),
+  );
+});
+
+test("keeps Selected Work placeholders decorative and inaccessible", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const graphics = page.locator("[data-work-placeholder-graphic]");
+  await expect(graphics).toHaveCount(5);
+
+  for (const graphic of await graphics.all()) {
+    await expect(graphic).toHaveAttribute("aria-hidden", "true");
+    await expect(graphic).toHaveAttribute("focusable", "false");
+  }
+});
+
+test("keeps Selected Work readable without client-side JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+
+  await page.goto("/");
+
+  const section = page.locator("[data-selected-work]");
+  await expect(section).toBeVisible();
+  await expect(
+    section.getByRole("heading", { level: 3, name: "WEB" }),
+  ).toBeVisible();
+  await expect(
+    section.getByRole("heading", { level: 3, name: "PRODUTO" }),
+  ).toBeVisible();
+  await expect(
+    section.getByRole("heading", { level: 3, name: "SISTEMAS" }),
   ).toBeVisible();
 
   await context.close();

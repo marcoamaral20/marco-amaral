@@ -1,0 +1,24 @@
+---
+import ProductWork from "../components/work/ProductWork.astro";
+import SystemsWork from "../components/work/SystemsWork.astro";
+import WebWork from "../components/work/WebWork.astro";
+import "../styles/sections/selected-work.css";
+---
+
+<section
+  id="selected-work"
+  class="selected-work"
+  aria-labelledby="selected-work-title"
+  data-selected-work
+>
+  <header class="selected-work__header relational-grid">
+    <p class="selected-work__index" aria-hidden="true">03</p>
+    <h2 class="selected-work__title" id="selected-work-title">Selected Work</h2>
+  </header>
+
+  <div class="selected-work__entries">
+    <WebWork />
+    <ProductWork />
+    <SystemsWork />
+  </div>
+</section>
