@@ -119,6 +119,9 @@ const branches = [
       <div class="contact__ready" data-contact-ready hidden>
         <h3 tabindex="-1">Já temos um ponto de partida.</h3>
         <p>Podemos seguir daqui.</p>
+        <a class="contact__destination" href="mailto:contato@marcoamaral.dev"
+          >Continuar por e-mail</a
+        >
         <div class="contact__quiet-controls">
           <button type="button" data-contact-back>Voltar</button>
           <button type="button" data-contact-restart hidden>Recomeçar</button>
@@ -126,9 +129,11 @@ const branches = [
       </div>
     </div>
 
-    <p class="contact__pending" data-contact-fallback>
-      CONTACT DESTINATION PENDING
-    </p>
+    <a
+      class="contact__fallback"
+      href="mailto:contato@marcoamaral.dev"
+      data-contact-fallback>contato@marcoamaral.dev</a
+    >
   </div>
 </section>
 

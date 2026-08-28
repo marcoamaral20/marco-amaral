@@ -1006,8 +1006,10 @@ test("renders Contact with its exact intro and first decisions", async ({
   await expect(section.locator("[data-decision-one] button")).toHaveCount(4);
   await expect(
     section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
-  ).toBeVisible();
-  await expect(section.getByRole("link")).toHaveCount(0);
+  ).toHaveCount(0);
+  await expect(
+    section.getByRole("link", { name: "contato@marcoamaral.dev" }),
+  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
 });
 
 test("maps Contact decisions to its own geometric branch state", async ({
@@ -1080,6 +1082,9 @@ test("the direct path skips the contextual question", async ({ page }) => {
   await expect(section.locator("[data-contact-context]")).toHaveText(
     "Prefiro explicar direto",
   );
+  await expect(
+    section.getByRole("link", { name: "Continuar por e-mail" }),
+  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
 });
 
 test("keeps Contact convergence decorative", async ({ page }) => {
@@ -1209,8 +1214,8 @@ test("keeps Contact truthful and readable without JavaScript", async ({
     }),
   ).toBeVisible();
   await expect(
-    section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
-  ).toBeVisible();
+    section.getByRole("link", { name: "contato@marcoamaral.dev" }),
+  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
 
   await context.close();
 });

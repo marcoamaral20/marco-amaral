@@ -17,7 +17,7 @@
 .contact__label,
 .contact__intro,
 .contact__router,
-.contact__pending {
+.contact__fallback {
   position: absolute;
   margin: 0;
 }
@@ -25,7 +25,7 @@
 .contact__index,
 .contact__label,
 .contact__context,
-.contact__pending,
+.contact__fallback,
 .contact__destination,
 .contact__quiet-controls {
   font-size: var(--text-metadata);
@@ -171,19 +171,34 @@
 }
 
 .contact__ready .contact__destination {
+  display: block;
+  width: fit-content;
   margin-top: 4.5rem;
   font-size: var(--text-metadata);
   letter-spacing: var(--tracking-label);
 }
 
-.contact__pending {
+.contact__fallback {
   right: var(--grid-margin);
   bottom: 3rem;
+  border-bottom: var(--line-primary) solid transparent;
   color: var(--color-muted);
+  text-decoration: none;
 }
 
-.contact__pending {
-  color: var(--color-muted);
+.contact__destination {
+  color: var(--color-foreground);
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 0.4rem;
+}
+
+.contact__fallback:hover,
+.contact__fallback:focus-visible,
+.contact__destination:hover,
+.contact__destination:focus-visible {
+  border-bottom-color: var(--color-sky-primary);
+  color: var(--color-foreground);
+  text-decoration-color: var(--color-sky-primary);
 }
 
 .contact-convergence {
@@ -367,7 +382,7 @@
     transform: translateY(1.5rem);
   }
 
-  .contact__pending {
+  .contact__fallback {
     right: calc(var(--grid-margin) + 3vw);
     bottom: 4rem;
   }
