@@ -206,6 +206,85 @@
   }
 }
 
+.hero-convergence[data-motion-phase="living"]
+  .hero-convergence__macro--upper-axis {
+  animation: hero-living-upper-axis 12s ease-in-out infinite;
+}
+
+.hero-convergence[data-motion-phase="living"]
+  .hero-convergence__macro--junctions {
+  animation: hero-living-junctions 10s ease-in-out infinite;
+}
+
+.hero-convergence[data-motion-phase="living"]
+  .hero-convergence__macro--lower-axis {
+  animation: hero-living-lower-axis 14s ease-in-out infinite;
+}
+
+.hero-convergence[data-motion-phase="living"] .hero-convergence__macro--planes {
+  animation: hero-living-planes 9s ease-in-out infinite;
+}
+
+@keyframes hero-living-upper-axis {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  42% {
+    transform: translate3d(6px, -3px, 0);
+  }
+
+  72% {
+    transform: translate3d(2px, 1px, 0);
+  }
+}
+
+@keyframes hero-living-junctions {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  38% {
+    transform: translate3d(-5px, 3px, 0);
+  }
+
+  75% {
+    transform: translate3d(4px, -2px, 0);
+  }
+}
+
+@keyframes hero-living-lower-axis {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  48% {
+    transform: translate3d(7px, -4px, 0);
+  }
+
+  78% {
+    transform: translate3d(2px, 1px, 0);
+  }
+}
+
+@keyframes hero-living-planes {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  35% {
+    transform: translate3d(-4px, -3px, 0);
+  }
+
+  70% {
+    transform: translate3d(5px, 3px, 0);
+  }
+}
+
 .hero-convergence[data-motion="paused"] .hero-convergence__macro {
   animation-play-state: paused;
 }
@@ -386,6 +465,20 @@
     animation: hero-macro-converge 1.9s cubic-bezier(0.22, 0.62, 0.32, 1) 80ms
       both;
   }
+
+  .hero-convergence[data-motion-phase="living"]
+    .hero-convergence__macro--mobile-axis {
+    animation: hero-living-mobile-axis 14s ease-in-out infinite;
+  }
+
+  .hero-convergence[data-motion-phase="living"]
+    .hero-convergence__macro--mobile-planes {
+    animation: hero-living-mobile-planes 12s ease-in-out infinite;
+  }
+
+  .hero-convergence[data-motion="paused"] .hero-convergence__macro {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes hero-depth-drift-far-mobile {
@@ -439,6 +532,36 @@
       calc(-1.25px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
       6px
     );
+  }
+}
+
+@keyframes hero-living-mobile-axis {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  45% {
+    transform: translate3d(4px, -2px, 0);
+  }
+
+  75% {
+    transform: translate3d(-2px, 1px, 0);
+  }
+}
+
+@keyframes hero-living-mobile-planes {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  40% {
+    transform: translate3d(-3px, 2px, 0);
+  }
+
+  72% {
+    transform: translate3d(3px, -2px, 0);
   }
 }
 

@@ -138,6 +138,50 @@ test("moves a small set of existing relationships from entrance into a living fi
   await context.close();
 });
 
+test("keeps macro relationships moving throughout the living state", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "living", {
+    timeout: 3000,
+  });
+
+  const livingMotion = await motionRoot
+    .locator(".hero-convergence__field--desktop [data-macro-relationship]")
+    .evaluateAll((relationships) =>
+      relationships.map((relationship) => {
+        const style = getComputedStyle(relationship);
+        return {
+          name: style.animationName,
+          iterations: style.animationIterationCount,
+          state: style.animationPlayState,
+        };
+      }),
+    );
+
+  expect(livingMotion).toHaveLength(4);
+  expect(
+    livingMotion.every(({ name }) => name.startsWith("hero-living-")),
+  ).toBe(true);
+  expect(
+    livingMotion.every(({ iterations }) => iterations === "infinite"),
+  ).toBe(true);
+  expect(livingMotion.every(({ state }) => state === "running")).toBe(true);
+
+  await page.evaluate(() => window.scrollTo(0, 1100));
+  await expect(motionRoot).toHaveAttribute("data-motion", "paused");
+  await expect(
+    motionRoot.locator("[data-macro-relationship]").first(),
+  ).toHaveCSS("animation-play-state", "paused");
+  await context.close();
+});
+
 test("turns desktop pointer position into progressively stronger depth perspective and returns to neutral", async ({
   browser,
 }, testInfo) => {
