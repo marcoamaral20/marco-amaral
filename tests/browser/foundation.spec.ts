@@ -1,6 +1,47 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+test("loads IBM Plex Sans as the primary production family", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveCSS(
+    "font-family",
+    '"IBM Plex Sans", Arial, "Helvetica Neue", Helvetica, sans-serif',
+  );
+  await page.evaluate(() => document.fonts.ready);
+  expect(
+    await page.evaluate(() => document.fonts.check('400 16px "IBM Plex Sans"')),
+  ).toBe(true);
+});
+
+test("serves and preloads the final font locally without a font CDN", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const preload = page.locator(
+    'link[rel="preload"][as="font"][href="/fonts/ibm-plex-sans-latin-wght-normal.woff2"]',
+  );
+  await expect(preload).toHaveAttribute("type", "font/woff2");
+  await expect(preload).toHaveAttribute("crossorigin", "");
+
+  const responseStatus = await page.evaluate(async () =>
+    fetch("/fonts/ibm-plex-sans-latin-wght-normal.woff2").then(
+      (response) => response.status,
+    ),
+  );
+  expect(responseStatus).toBe(200);
+
+  const remoteFontRequests = await page.evaluate(() =>
+    performance
+      .getEntriesByType("resource")
+      .map((entry) => entry.name)
+      .filter((url) => /fonts\.(googleapis|gstatic)\.com/.test(url)),
+  );
+  expect(remoteFontRequests).toEqual([]);
+});
+
 test("renders the frozen Hero copy with a single primary heading", async ({
   page,
 }) => {

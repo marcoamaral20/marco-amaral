@@ -23,8 +23,7 @@
   --space-32: 8rem;
   --space-48: 12rem;
 
-  --font-sans-development: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  --font-sans: var(--font-sans-development);
+  --font-sans: "IBM Plex Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --text-metadata: 0.75rem;

@@ -1,12 +1,18 @@
 # Typography Foundation
 
-Status: **FINAL FONT PENDING**  
-Audit baseline: commit `d450958` plus documentation-only Phase 7 artifacts  
-Conceptual reference: Söhne; no licensed Söhne files are present
+Status: **FINAL FONT INTEGRATED — IBM PLEX SANS**
 
-This document records the approved static page as it renders with the temporary
-Arial/Helvetica development stack. It does not select, install, or simulate a
-final typeface, and it does not authorize typography-driven layout changes.
+Audit baseline: commit `d450958`; bake-off decision: commit `7053ddc`
+
+Production integration: IBM Plex Sans variable Roman, weights 400–500
+
+The original Arial/Helvetica audit below is preserved as the decision record.
+Production now uses the single local family described in section 12; the
+fallback captures remain historical evidence rather than a fidelity target.
+
+This document began as an audit of the approved static page rendered with the
+temporary Arial/Helvetica stack. Phase 8 integrates the bake-off winner without
+authorizing composition, content, Convergence, architecture, or motion changes.
 
 ## 1. Current typography audit
 
@@ -246,18 +252,82 @@ single family token are sufficient.
 
 ## 11. QA checklist for final installation
 
-- [ ] License explicitly permits the chosen web deployment and expected traffic.
-- [ ] Only approved WOFF2 files and required upright weights/range are present.
-- [ ] Family names, weight descriptors, and style descriptors match the files.
-- [ ] Regular is preloaded; every preload is used and has the correct MIME type.
-- [ ] No synthetic face appears; computed 400/500 roles resolve as intended.
-- [ ] Hero remains exactly two authored lines at 1440, 820, and 390px.
-- [ ] Hero support remains spatially displaced and Convergence remains secondary.
-- [ ] Territory titles/descriptions retain their approved balance and line counts.
-- [ ] Selected Work labels, classifications, and narrative rows do not collide.
-- [ ] Practice note preserves separation from both principles at all widths.
-- [ ] Practice identity and verification positions remain legible without collision.
-- [ ] Contact intro retains its intended break; every branch is tested at tablet width.
+- [x] License explicitly permits the chosen web deployment and expected traffic.
+- [x] Only approved WOFF2 files and required upright weights/range are present.
+- [x] Family names, weight descriptors, and style descriptors match the files.
+- [x] Regular is preloaded; every preload is used and has the correct MIME type.
+- [x] No synthetic face appears; computed 400/500 roles resolve as intended.
+- [x] Hero remains exactly two authored lines at 1440, 820, and 390px.
+- [x] Hero support remains spatially displaced and Convergence remains secondary.
+- [x] Territory titles/descriptions retain their approved balance and line counts.
+- [x] Selected Work labels, classifications, and narrative rows do not collide.
+- [x] Practice note preserves separation from both principles at all widths.
+- [x] Practice identity and verification positions remain legible without collision.
+- [x] Contact intro retains its intended break; every branch is tested at tablet width.
+
+## 12. Phase 8 production integration
+
+### Decision and provenance
+
+- **Family:** IBM Plex Sans.
+- **Source artifact:** `@fontsource-variable/ibm-plex-sans@5.3.0`, whose files
+  reproduce the upstream IBM Plex family for self-hosting.
+- **License:** SIL Open Font License 1.1. The complete license and IBM copyright
+  notice are preserved at `public/fonts/IBM-Plex-Sans-OFL-1.1.txt`.
+- **Production asset:**
+  `public/fonts/ibm-plex-sans-latin-wght-normal.woff2`, Latin Roman variable,
+  45,712 bytes, SHA-256
+  `e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470`.
+- **Scope:** one `@font-face`, upright style, deliberately constrained to the
+  implemented 400–500 range. No italic, width axis, additional subset, package
+  dependency, or remote font request ships in production.
+
+`--font-sans` is the only family integration point and resolves to
+`"IBM Plex Sans", Arial, "Helvetica Neue", Helvetica, sans-serif`. The system
+families remain failure fallbacks only; the development-only token was removed.
+The face uses `font-display: swap`, and `font-synthesis: none` remains active.
+
+### Loading strategy
+
+The single WOFF2 is used by the above-the-fold identity, eyebrow, and dominant
+Hero headline, so `SiteLayout.astro` preloads that same-origin asset once with
+`as="font"`, `type="font/woff2"`, and `crossorigin`. There is no second preload,
+font CDN, runtime loader, or client-side font mechanism.
+
+### Layout policy and review result
+
+The bake-off is a visual reference, not a pixel-parity contract. Phase 8 made no
+preventive tracking, size, line-height, measure, breakpoint, position, or section
+layout adjustments. Hero, Territórios, Selected Work, Marco / Prática, Contact,
+Convergence, content, architecture, and motion remain compositionally unchanged.
+
+The IBM Plex metrics preserve the authored two-line Hero headline and the
+approved hierarchy. At 820px, one secondary Contact option may occupy an extra
+natural line compared with Arial; it remains contained, legible, and separated,
+with no collision, hierarchy loss, or material degradation. It is therefore an
+acceptable natural wrap and does not justify a correction.
+
+### Verification matrix
+
+Final QA covers 390, 430, 768, 820, 1024, 1280, and 1440px, with light/dark
+parity checks at the representative 390, 820, and 1440px widths. The review
+includes font resolution and local loading, horizontal overflow, authored line
+counts, collisions, Contact states, keyboard/accessibility smoke checks, and the
+production build. The complete repository verification is run through
+`npm run verify` before the Phase 8 commit.
+
+Full-page evidence is preserved under `docs/assets/typography-final/`. Every
+light/dark pair uses identical content, state, geometry, and viewport:
+
+| Capture                           | Rendered dimensions | SHA-256                                                            |
+| --------------------------------- | ------------------: | ------------------------------------------------------------------ |
+| `ibm-plex-desktop-1440-light.png` |         1440 × 6608 | `afe501108a7ba744743e70462e06714f0a79e6a516be3990647e3da4a5fd8052` |
+| `ibm-plex-desktop-1440-dark.png`  |         1440 × 6608 | `69e7a954059cb4bea299c354c265652df05a3939747f39ebb284ff569153d2e0` |
+| `ibm-plex-tablet-820-light.png`   |          820 × 6888 | `99d2ea2d5a45e89ba4e668bbc21fe7c58eb249b3375289fc28e30b5e0adb529c` |
+| `ibm-plex-tablet-820-dark.png`    |          820 × 6888 | `25d390a799e60468d09d469a691df9bedafa8b1169baf971271f9f9704e649d0` |
+| `ibm-plex-mobile-390-light.png`   |          390 × 7632 | `8313b6ef6ff6d34b07c00e36e0d00a52b2aa416eb533bb7c3decbce05ddd3aa3` |
+| `ibm-plex-mobile-390-dark.png`    |          390 × 7632 | `c42ae50685b65df074b9285ab0a0d3346f1be0b74717467ee3de001a6e6813d3` |
+
 - [ ] Light and dark modes retain the same material identity.
 - [ ] No horizontal overflow occurs at 390, 820, or 1440px.
 - [ ] Keyboard focus, accessibility smoke checks, and no-JavaScript reading remain green.
