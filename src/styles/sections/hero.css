@@ -208,21 +208,25 @@
 
 .hero-convergence[data-motion-phase="living"]
   .hero-convergence__macro--upper-axis {
-  animation: hero-living-upper-axis 12s ease-in-out infinite;
+  animation: hero-living-upper-axis 7.7s
+    cubic-bezier(0.37, 0.08, 0.63, 0.92) -0.15s infinite;
 }
 
 .hero-convergence[data-motion-phase="living"]
   .hero-convergence__macro--junctions {
-  animation: hero-living-junctions 10s ease-in-out infinite;
+  animation: hero-living-junctions 6.4s
+    cubic-bezier(0.3, 0.16, 0.58, 0.96) -0.3s infinite;
 }
 
 .hero-convergence[data-motion-phase="living"]
   .hero-convergence__macro--lower-axis {
-  animation: hero-living-lower-axis 14s ease-in-out infinite;
+  animation: hero-living-lower-axis 9.3s
+    cubic-bezier(0.42, 0.04, 0.54, 0.94) -0.45s infinite;
 }
 
 .hero-convergence[data-motion-phase="living"] .hero-convergence__macro--planes {
-  animation: hero-living-planes 9s ease-in-out infinite;
+  animation: hero-living-planes 6.9s cubic-bezier(0.33, 0.12, 0.67, 0.88) -0.6s
+    infinite;
 }
 
 @keyframes hero-living-upper-axis {
@@ -231,12 +235,16 @@
     transform: translate3d(0, 0, 0);
   }
 
-  42% {
+  27% {
+    transform: translate3d(3px, -2px, 0);
+  }
+
+  51% {
     transform: translate3d(6px, -3px, 0);
   }
 
-  72% {
-    transform: translate3d(2px, 1px, 0);
+  79% {
+    transform: translate3d(-2px, 1px, 0);
   }
 }
 
@@ -246,12 +254,20 @@
     transform: translate3d(0, 0, 0);
   }
 
-  38% {
+  21% {
+    transform: translate3d(-2px, 1px, 0);
+  }
+
+  46% {
     transform: translate3d(-5px, 3px, 0);
   }
 
-  75% {
+  68% {
     transform: translate3d(4px, -2px, 0);
+  }
+
+  87% {
+    transform: translate3d(1px, 2px, 0);
   }
 }
 
@@ -261,12 +277,16 @@
     transform: translate3d(0, 0, 0);
   }
 
-  48% {
+  33% {
+    transform: translate3d(3px, -1px, 0);
+  }
+
+  57% {
     transform: translate3d(7px, -4px, 0);
   }
 
-  78% {
-    transform: translate3d(2px, 1px, 0);
+  82% {
+    transform: translate3d(-3px, 2px, 0);
   }
 }
 
@@ -276,12 +296,20 @@
     transform: translate3d(0, 0, 0);
   }
 
-  35% {
+  18% {
+    transform: translate3d(-2px, -1px, 0);
+  }
+
+  43% {
     transform: translate3d(-4px, -3px, 0);
   }
 
-  70% {
+  66% {
     transform: translate3d(5px, 3px, 0);
+  }
+
+  84% {
+    transform: translate3d(1px, -2px, 0);
   }
 }
 
@@ -468,12 +496,14 @@
 
   .hero-convergence[data-motion-phase="living"]
     .hero-convergence__macro--mobile-axis {
-    animation: hero-living-mobile-axis 14s ease-in-out infinite;
+    animation: hero-living-mobile-axis 9.7s
+      cubic-bezier(0.37, 0.08, 0.63, 0.92) -0.2s infinite;
   }
 
   .hero-convergence[data-motion-phase="living"]
     .hero-convergence__macro--mobile-planes {
-    animation: hero-living-mobile-planes 12s ease-in-out infinite;
+    animation: hero-living-mobile-planes 8.3s
+      cubic-bezier(0.3, 0.16, 0.58, 0.96) -0.4s infinite;
   }
 
   .hero-convergence[data-motion="paused"] .hero-convergence__macro {

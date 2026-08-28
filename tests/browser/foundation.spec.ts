@@ -159,8 +159,11 @@ test("keeps macro relationships moving throughout the living state", async ({
         const style = getComputedStyle(relationship);
         return {
           name: style.animationName,
+          delay: style.animationDelay,
+          duration: Number.parseFloat(style.animationDuration),
           iterations: style.animationIterationCount,
           state: style.animationPlayState,
+          timing: style.animationTimingFunction,
         };
       }),
     );
@@ -173,6 +176,17 @@ test("keeps macro relationships moving throughout the living state", async ({
     livingMotion.every(({ iterations }) => iterations === "infinite"),
   ).toBe(true);
   expect(livingMotion.every(({ state }) => state === "running")).toBe(true);
+  expect(new Set(livingMotion.map(({ duration }) => duration)).size).toBe(4);
+  expect(
+    livingMotion.every(({ duration }) => duration >= 6 && duration <= 10),
+  ).toBe(true);
+  expect(new Set(livingMotion.map(({ delay }) => delay)).size).toBe(4);
+  expect(livingMotion.every(({ delay }) => Number.parseFloat(delay) < 0)).toBe(
+    true,
+  );
+  expect(
+    new Set(livingMotion.map(({ timing }) => timing)).size,
+  ).toBeGreaterThan(1);
 
   await page.evaluate(() => window.scrollTo(0, 1100));
   await expect(motionRoot).toHaveAttribute("data-motion", "paused");
