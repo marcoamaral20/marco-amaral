@@ -250,7 +250,7 @@ Söhne was not rendered and no exact metric comparison is claimed.
 
 This is not a final selection and does not authorize installation. IBM Plex
 Sans does not win solely by score: it is recommended because it best preserves
-the page's dominant identity relationship—software engineering expressed with
+the page's dominant identity relationship—Software Developering expressed with
 editorial precision and quiet confidence—while requiring fewer structural
 compensations than Inter and sacrificing less visual tension than Source Sans 3.
 

@@ -53,7 +53,7 @@ test("renders the frozen Hero copy with a single primary heading", async ({
     page.getByRole("banner").getByText("Marco Amaral", { exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByText("Software Engineer", { exact: true }),
+    page.getByText("Software Developer", { exact: true }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", {
@@ -862,7 +862,7 @@ test("renders Marco / Prática with pending editorial copy and minimal identity"
     section.getByText("Marco Amaral", { exact: true }),
   ).toBeVisible();
   await expect(
-    section.getByText("Software Engineer · Brasil", { exact: true }),
+    section.getByText("Software Developer · Brasil", { exact: true }),
   ).toBeVisible();
   await expect(section.locator("img")).toHaveCount(0);
 });
