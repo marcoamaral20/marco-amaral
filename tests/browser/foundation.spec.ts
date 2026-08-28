@@ -107,7 +107,87 @@ test("organizes Hero Convergence into three restrained perceptual layers", async
         })
         .map((layer) => getComputedStyle(layer).animationName),
     );
-  expect(activeAnimationNames).toEqual(["hero-depth-drift-far"]);
+  expect(activeAnimationNames).toHaveLength(1);
+  expect(activeAnimationNames[0]).toMatch(/^hero-depth-drift-far(?:-mobile)?$/);
+});
+
+test("starts desktop drift inside its perceptible phase with restrained cycles", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const calibration = await page
+    .locator(".hero-convergence__field--desktop")
+    .evaluate((field) =>
+      [
+        ".hero-convergence__secondary",
+        ".hero-convergence__primary",
+        ".hero-convergence__relationship",
+        ".hero-convergence__planes",
+      ].map((selector) => {
+        const layer = field.querySelector(selector);
+        const style = getComputedStyle(layer!);
+        return {
+          delay: Number.parseFloat(style.animationDelay),
+          duration: Number.parseFloat(style.animationDuration),
+        };
+      }),
+    );
+
+  expect(calibration.map(({ duration }) => duration)).toEqual([28, 25, 22, 26]);
+  expect(calibration.every(({ delay }) => delay < 0)).toBe(true);
+});
+
+test("makes scroll depth progressively stronger from FAR to NEAR", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const readTranslations = () =>
+    page.locator(".hero-convergence__field--desktop").evaluate((field) => {
+      const selectors = [
+        ".hero-convergence__secondary",
+        ".hero-convergence__primary",
+        ".hero-convergence__planes",
+      ];
+      return selectors.map((selector) => {
+        const transform = getComputedStyle(
+          field.querySelector(selector)!,
+        ).transform;
+        const matrix = new DOMMatrixReadOnly(transform);
+        return { x: matrix.m41, y: matrix.m42 };
+      });
+    });
+
+  await page.evaluate(() =>
+    document.getAnimations().forEach((animation) => animation.pause()),
+  );
+  const start = await readTranslations();
+  await page.evaluate(() => window.scrollTo(0, 840));
+  await expect
+    .poll(() =>
+      page
+        .locator("[data-hero-motion]")
+        .evaluate((root) =>
+          Number.parseFloat(
+            getComputedStyle(root).getPropertyValue("--hero-scroll-depth"),
+          ),
+        ),
+    )
+    .toBeGreaterThan(0.9);
+  const end = await readTranslations();
+  const displacement = end.map((point, index) =>
+    Math.hypot(point.x - start[index]!.x, point.y - start[index]!.y),
+  );
+
+  expect(displacement[0]).toBeGreaterThanOrEqual(2);
+  expect(displacement[0]).toBeLessThanOrEqual(4);
+  expect(displacement[1]).toBeGreaterThanOrEqual(4);
+  expect(displacement[1]).toBeLessThanOrEqual(7);
+  expect(displacement[2]).toBeGreaterThanOrEqual(7);
+  expect(displacement[2]).toBeLessThanOrEqual(11);
 });
 
 test("keeps the approved Hero static when reduced motion is requested", async ({

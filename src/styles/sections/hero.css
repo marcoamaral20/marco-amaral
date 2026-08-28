@@ -68,6 +68,14 @@
   --hero-line: #b9c8d0;
   --hero-plane: #87949b;
   --hero-scroll-depth: 0;
+  --hero-scroll-far-x: -2.5px;
+  --hero-scroll-far-y: -1.25px;
+  --hero-scroll-mid-x: 5px;
+  --hero-scroll-mid-y: -3.5px;
+  --hero-scroll-near-x: 9px;
+  --hero-scroll-near-y: -6px;
+  --hero-scroll-relationship-x: 7px;
+  --hero-scroll-relationship-y: -4.5px;
 
   color: var(--hero-line);
   perspective: 75rem;
@@ -120,22 +128,24 @@
 
 .hero-convergence:is([data-motion="active"], [data-motion="paused"])
   .hero-convergence__secondary {
-  animation: hero-depth-drift-far 38s ease-in-out infinite alternate;
+  animation: hero-depth-drift-far 28s ease-in-out -7s infinite alternate;
 }
 
 .hero-convergence:is([data-motion="active"], [data-motion="paused"])
   .hero-convergence__primary {
-  animation: hero-depth-drift-mid 33s ease-in-out infinite alternate-reverse;
+  animation: hero-depth-drift-mid 25s ease-in-out -11s infinite
+    alternate-reverse;
 }
 
 .hero-convergence:is([data-motion="active"], [data-motion="paused"])
   .hero-convergence__relationship {
-  animation: hero-relational-alignment 29s ease-in-out infinite alternate;
+  animation: hero-relational-alignment 22s ease-in-out -8s infinite alternate;
 }
 
 .hero-convergence:is([data-motion="active"], [data-motion="paused"])
   .hero-convergence__planes {
-  animation: hero-depth-drift-near 31s ease-in-out infinite alternate-reverse;
+  animation: hero-depth-drift-near 26s ease-in-out -13s infinite
+    alternate-reverse;
 }
 
 .hero-convergence[data-motion="paused"] [data-depth-layer] {
@@ -145,17 +155,17 @@
 @keyframes hero-depth-drift-far {
   from {
     transform: translate3d(
-      calc(var(--hero-scroll-depth) * -1px),
-      calc(var(--hero-scroll-depth) * -0.75px),
-      -6px
+      calc(-1px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+      calc(-0.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+      -10px
     );
   }
 
   to {
     transform: translate3d(
-      calc(1.75px + var(--hero-scroll-depth) * -1px),
-      calc(-1px + var(--hero-scroll-depth) * -0.75px),
-      -6px
+      calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+      calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+      -10px
     );
   }
 }
@@ -163,16 +173,16 @@
 @keyframes hero-depth-drift-mid {
   from {
     transform: translate3d(
-      calc(-0.75px + var(--hero-scroll-depth) * 1.5px),
-      calc(0.5px + var(--hero-scroll-depth) * -1.25px),
+      calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+      calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
       0
     );
   }
 
   to {
     transform: translate3d(
-      calc(1px + var(--hero-scroll-depth) * 1.5px),
-      calc(-0.5px + var(--hero-scroll-depth) * -1.25px),
+      calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+      calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
       0
     );
   }
@@ -181,17 +191,17 @@
 @keyframes hero-depth-drift-near {
   from {
     transform: translate3d(
-      calc(-0.5px + var(--hero-scroll-depth) * 2.5px),
-      calc(0.25px + var(--hero-scroll-depth) * -2px),
-      5px
+      calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+      calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+      10px
     );
   }
 
   to {
     transform: translate3d(
-      calc(0.75px + var(--hero-scroll-depth) * 2.5px),
-      calc(-0.5px + var(--hero-scroll-depth) * -2px),
-      5px
+      calc(4px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+      calc(-2.5px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+      10px
     );
   }
 }
@@ -199,17 +209,23 @@
 @keyframes hero-relational-alignment {
   from {
     transform: translate3d(
-      calc(-0.5px + var(--hero-scroll-depth) * 2px),
-      calc(0.5px + var(--hero-scroll-depth) * -1.5px),
-      3px
+      calc(
+        -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)
+      ),
+      calc(
+        1.25px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
+      ),
+      6px
     );
   }
 
   to {
     transform: translate3d(
-      calc(0.75px + var(--hero-scroll-depth) * 2px),
-      calc(-0.25px + var(--hero-scroll-depth) * -1.5px),
-      3px
+      calc(3px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)),
+      calc(
+        -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
+      ),
+      6px
     );
   }
 }
@@ -256,9 +272,25 @@
 }
 
 @media (max-width: 47.999rem) {
+  .hero-convergence {
+    --hero-scroll-far-x: -1.25px;
+    --hero-scroll-far-y: -0.75px;
+    --hero-scroll-mid-x: 2.5px;
+    --hero-scroll-mid-y: -2px;
+    --hero-scroll-near-x: 4.5px;
+    --hero-scroll-near-y: -3px;
+  }
+
+  .hero-convergence:is([data-motion="active"], [data-motion="paused"])
+    .hero-convergence__secondary {
+    animation: hero-depth-drift-far-mobile 36s ease-in-out -9s infinite
+      alternate;
+  }
+
   .hero-convergence:is([data-motion="active"], [data-motion="paused"])
     .hero-convergence__primary {
-    animation-duration: 39s;
+    animation: hero-depth-drift-mid-mobile 34s ease-in-out -12s infinite
+      alternate-reverse;
   }
 
   .hero-convergence:is([data-motion="active"], [data-motion="paused"])
@@ -268,7 +300,62 @@
 
   .hero-convergence:is([data-motion="active"], [data-motion="paused"])
     .hero-convergence__planes {
-    animation-duration: 42s;
+    animation: hero-depth-drift-near-mobile 36s ease-in-out -15s infinite
+      alternate-reverse;
+  }
+}
+
+@keyframes hero-depth-drift-far-mobile {
+  from {
+    transform: translate3d(
+      calc(-0.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+      calc(-0.25px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+      -6px
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(1.25px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+      calc(-1px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+      -6px
+    );
+  }
+}
+
+@keyframes hero-depth-drift-mid-mobile {
+  from {
+    transform: translate3d(
+      calc(-0.75px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+      calc(0.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
+      0
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+      calc(-0.75px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
+      0
+    );
+  }
+}
+
+@keyframes hero-depth-drift-near-mobile {
+  from {
+    transform: translate3d(
+      calc(-1px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+      calc(0.5px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+      6px
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(2px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+      calc(-1.25px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+      6px
+    );
   }
 }
 
