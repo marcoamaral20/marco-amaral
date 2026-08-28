@@ -67,8 +67,10 @@
   z-index: 1;
   --hero-line: #b9c8d0;
   --hero-plane: #87949b;
+  --hero-scroll-depth: 0;
 
   color: var(--hero-line);
+  perspective: 75rem;
 }
 
 .hero-convergence__field {
@@ -109,6 +111,109 @@
   opacity: 0.82;
 }
 
+.hero-convergence[data-motion="active"] [data-depth-layer],
+.hero-convergence[data-motion="paused"] [data-depth-layer] {
+  transform-box: view-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hero-convergence:is([data-motion="active"], [data-motion="paused"])
+  .hero-convergence__secondary {
+  animation: hero-depth-drift-far 38s ease-in-out infinite alternate;
+}
+
+.hero-convergence:is([data-motion="active"], [data-motion="paused"])
+  .hero-convergence__primary {
+  animation: hero-depth-drift-mid 33s ease-in-out infinite alternate-reverse;
+}
+
+.hero-convergence:is([data-motion="active"], [data-motion="paused"])
+  .hero-convergence__relationship {
+  animation: hero-relational-alignment 29s ease-in-out infinite alternate;
+}
+
+.hero-convergence:is([data-motion="active"], [data-motion="paused"])
+  .hero-convergence__planes {
+  animation: hero-depth-drift-near 31s ease-in-out infinite alternate-reverse;
+}
+
+.hero-convergence[data-motion="paused"] [data-depth-layer] {
+  animation-play-state: paused;
+}
+
+@keyframes hero-depth-drift-far {
+  from {
+    transform: translate3d(
+      calc(var(--hero-scroll-depth) * -1px),
+      calc(var(--hero-scroll-depth) * -0.75px),
+      -6px
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(1.75px + var(--hero-scroll-depth) * -1px),
+      calc(-1px + var(--hero-scroll-depth) * -0.75px),
+      -6px
+    );
+  }
+}
+
+@keyframes hero-depth-drift-mid {
+  from {
+    transform: translate3d(
+      calc(-0.75px + var(--hero-scroll-depth) * 1.5px),
+      calc(0.5px + var(--hero-scroll-depth) * -1.25px),
+      0
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(1px + var(--hero-scroll-depth) * 1.5px),
+      calc(-0.5px + var(--hero-scroll-depth) * -1.25px),
+      0
+    );
+  }
+}
+
+@keyframes hero-depth-drift-near {
+  from {
+    transform: translate3d(
+      calc(-0.5px + var(--hero-scroll-depth) * 2.5px),
+      calc(0.25px + var(--hero-scroll-depth) * -2px),
+      5px
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(0.75px + var(--hero-scroll-depth) * 2.5px),
+      calc(-0.5px + var(--hero-scroll-depth) * -2px),
+      5px
+    );
+  }
+}
+
+@keyframes hero-relational-alignment {
+  from {
+    transform: translate3d(
+      calc(-0.5px + var(--hero-scroll-depth) * 2px),
+      calc(0.5px + var(--hero-scroll-depth) * -1.5px),
+      3px
+    );
+  }
+
+  to {
+    transform: translate3d(
+      calc(0.75px + var(--hero-scroll-depth) * 2px),
+      calc(-0.25px + var(--hero-scroll-depth) * -1.5px),
+      3px
+    );
+  }
+}
+
 :root[data-theme="dark"] .hero-convergence {
   --hero-line: #3b464d;
   --hero-plane: #697279;
@@ -147,6 +252,31 @@
 
   .hero-convergence__field--desktop {
     display: block;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .hero-convergence:is([data-motion="active"], [data-motion="paused"])
+    .hero-convergence__primary {
+    animation-duration: 39s;
+  }
+
+  .hero-convergence:is([data-motion="active"], [data-motion="paused"])
+    .hero-convergence__relationship {
+    animation: none;
+  }
+
+  .hero-convergence:is([data-motion="active"], [data-motion="paused"])
+    .hero-convergence__planes {
+    animation-duration: 42s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-convergence [data-depth-layer] {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
   }
 }
 

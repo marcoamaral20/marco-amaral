@@ -86,6 +86,99 @@ test("keeps Convergence decorative and outside the accessibility tree", async ({
   }
 });
 
+test("organizes Hero Convergence into three restrained perceptual layers", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion", "active");
+  await expect(motionRoot.locator('[data-depth-layer="far"]')).toHaveCount(2);
+  await expect(motionRoot.locator('[data-depth-layer="mid"]')).toHaveCount(2);
+  await expect(motionRoot.locator('[data-depth-layer="near"]')).toHaveCount(4);
+
+  const activeAnimationNames = await motionRoot
+    .locator('[data-depth-layer="far"]')
+    .evaluateAll((layers) =>
+      layers
+        .filter((layer) => {
+          const field = layer.closest("svg");
+          return field && getComputedStyle(field).display !== "none";
+        })
+        .map((layer) => getComputedStyle(layer).animationName),
+    );
+  expect(activeAnimationNames).toEqual(["hero-depth-drift-far"]);
+});
+
+test("keeps the approved Hero static when reduced motion is requested", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ reducedMotion: "reduce" });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion", "reduced");
+  const motionState = await motionRoot.evaluate((root) => ({
+    scrollDepth: getComputedStyle(root).getPropertyValue("--hero-scroll-depth"),
+    animations: Array.from(
+      root.querySelectorAll<SVGGElement>("[data-depth-layer]"),
+    ).map((layer) => getComputedStyle(layer).animationName),
+  }));
+
+  expect(motionState.scrollDepth.trim()).toBe("0");
+  expect(new Set(motionState.animations)).toEqual(new Set(["none"]));
+  await context.close();
+});
+
+test("leaves the Hero production-quality when client-side motion is unavailable", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).not.toHaveAttribute("data-motion", "active");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.locator("[data-hero-supporting]")).toBeVisible();
+  expect(
+    await motionRoot
+      .locator('[data-depth-layer="far"]')
+      .first()
+      .evaluate((layer) => getComputedStyle(layer).transform),
+  ).toBe("none");
+  await context.close();
+});
+
+test("freezes the current Hero frame instead of snapping when it leaves view", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  await page.evaluate(() => window.scrollTo(0, 1100));
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion", "paused");
+  const farLayer = motionRoot.locator('[data-depth-layer="far"]').first();
+  await expect(farLayer).toHaveCSS("animation-name", "hero-depth-drift-far");
+  await expect(farLayer).toHaveCSS("animation-play-state", "paused");
+});
+
+test("keeps relational alignment disabled when the mobile Hero pauses", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.evaluate(() => window.scrollTo(0, 1000));
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion", "paused");
+  await expect(
+    motionRoot.locator(".hero-convergence__relationship").last(),
+  ).toHaveCSS("animation-name", "none");
+});
+
 test("preserves the desktop headline and displaced supporting relationship", async ({
   page,
 }) => {
