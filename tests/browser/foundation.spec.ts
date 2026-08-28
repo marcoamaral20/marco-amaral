@@ -842,7 +842,7 @@ test("keeps Selected Work readable without client-side JavaScript", async ({
   await context.close();
 });
 
-test("renders Marco / Prática with pending editorial copy and minimal identity", async ({
+test("renders Marco / Prática with final editorial copy and minimal identity", async ({
   page,
 }) => {
   await page.goto("/");
@@ -853,11 +853,14 @@ test("renders Marco / Prática with pending editorial copy and minimal identity"
   ).toBeVisible();
   await expect(section.locator("[data-practice-note]")).toHaveAttribute(
     "data-copy-status",
-    "pending",
+    "final",
   );
-  await expect(
-    section.getByText("COPY PENDING", { exact: true }),
-  ).toBeVisible();
+  await expect(section.locator("[data-practice-note]")).toContainText(
+    "Costumo chegar quando a solução ainda não está clara.",
+  );
+  await expect(section.getByText("COPY PENDING", { exact: true })).toHaveCount(
+    0,
+  );
   await expect(
     section.getByText("Marco Amaral", { exact: true }),
   ).toBeVisible();
@@ -884,18 +887,33 @@ test("renders exactly the two approved practice principles", async ({
   );
 });
 
-test("reserves verification-link positions without inventing destinations", async ({
-  page,
-}) => {
+test("links the verified public identity destinations", async ({ page }) => {
   await page.goto("/");
 
   const section = page.locator("[data-practice]");
+  await expect(section.locator(".practice__verification")).toHaveAttribute(
+    "aria-label",
+    "Destinos de verificação",
+  );
   const positions = section.locator("[data-verification-position]");
 
   await expect(positions).toHaveCount(2);
-  await expect(positions.nth(0)).toContainText("LinkedIn");
-  await expect(positions.nth(1)).toContainText("GitHub");
-  await expect(section.getByRole("link")).toHaveCount(0);
+
+  const linkedin = section.getByRole("link", { name: "LinkedIn" });
+  await expect(linkedin).toHaveAttribute(
+    "href",
+    "https://www.linkedin.com/in/marcoaamaral/",
+  );
+  await expect(linkedin).toHaveAttribute("target", "_blank");
+  await expect(linkedin).toHaveAttribute("rel", "noreferrer");
+
+  const github = section.getByRole("link", { name: "GitHub" });
+  await expect(github).toHaveAttribute(
+    "href",
+    "https://github.com/marcoamaral20",
+  );
+  await expect(github).toHaveAttribute("target", "_blank");
+  await expect(github).toHaveAttribute("rel", "noreferrer");
 });
 
 test("keeps Practice residual geometry decorative", async ({ page }) => {
