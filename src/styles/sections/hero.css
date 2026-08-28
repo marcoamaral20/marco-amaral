@@ -76,6 +76,12 @@
   --hero-scroll-near-y: -6px;
   --hero-scroll-relationship-x: 7px;
   --hero-scroll-relationship-y: -4.5px;
+  --hero-pointer-far-x: 0px;
+  --hero-pointer-far-y: 0px;
+  --hero-pointer-mid-x: 0px;
+  --hero-pointer-mid-y: 0px;
+  --hero-pointer-near-x: 0px;
+  --hero-pointer-near-y: 0px;
 
   color: var(--hero-line);
   perspective: 75rem;
@@ -152,81 +158,143 @@
   animation-play-state: paused;
 }
 
-@keyframes hero-depth-drift-far {
+.hero-convergence[data-motion-phase="entering"] .hero-convergence__macro {
+  transform-box: view-box;
+  transform-origin: center;
+  will-change: transform;
+  animation: hero-macro-converge 2.2s cubic-bezier(0.22, 0.62, 0.32, 1) both;
+}
+
+.hero-convergence[data-motion-phase="entering"]
+  .hero-convergence__macro--upper-axis {
+  --hero-macro-from-x: -30px;
+  --hero-macro-from-y: 12px;
+}
+
+.hero-convergence[data-motion-phase="entering"]
+  .hero-convergence__macro--junctions {
+  --hero-macro-from-x: 22px;
+  --hero-macro-from-y: -13px;
+  animation-delay: 90ms;
+}
+
+.hero-convergence[data-motion-phase="entering"]
+  .hero-convergence__macro--lower-axis {
+  --hero-macro-from-x: -26px;
+  --hero-macro-from-y: 15px;
+  animation-delay: 160ms;
+}
+
+.hero-convergence[data-motion-phase="entering"]
+  .hero-convergence__macro--planes {
+  --hero-macro-from-x: 18px;
+  --hero-macro-from-y: 8px;
+  animation-delay: 70ms;
+}
+
+@keyframes hero-macro-converge {
   from {
     transform: translate3d(
-      calc(-1px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
-      calc(-0.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
-      -10px
+      var(--hero-macro-from-x),
+      var(--hero-macro-from-y),
+      0
     );
   }
 
   to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-convergence[data-motion="paused"] .hero-convergence__macro {
+  animation-play-state: paused;
+}
+
+@keyframes hero-depth-drift-far {
+  from {
     transform: translate3d(
-      calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
-      calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
-      -10px
-    );
+        calc(-1px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+        calc(-0.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+        -10px
+      )
+      translate3d(var(--hero-pointer-far-x), var(--hero-pointer-far-y), 0);
+  }
+
+  to {
+    transform: translate3d(
+        calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-far-x)),
+        calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-far-y)),
+        -10px
+      )
+      translate3d(var(--hero-pointer-far-x), var(--hero-pointer-far-y), 0);
   }
 }
 
 @keyframes hero-depth-drift-mid {
   from {
     transform: translate3d(
-      calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
-      calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
-      0
-    );
+        calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+        calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
+        0
+      )
+      translate3d(var(--hero-pointer-mid-x), var(--hero-pointer-mid-y), 0);
   }
 
   to {
     transform: translate3d(
-      calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
-      calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
-      0
-    );
+        calc(2.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-x)),
+        calc(-1.5px + var(--hero-scroll-depth) * var(--hero-scroll-mid-y)),
+        0
+      )
+      translate3d(var(--hero-pointer-mid-x), var(--hero-pointer-mid-y), 0);
   }
 }
 
 @keyframes hero-depth-drift-near {
   from {
     transform: translate3d(
-      calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
-      calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
-      10px
-    );
+        calc(-2px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+        calc(1px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+        10px
+      )
+      translate3d(var(--hero-pointer-near-x), var(--hero-pointer-near-y), 0);
   }
 
   to {
     transform: translate3d(
-      calc(4px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
-      calc(-2.5px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
-      10px
-    );
+        calc(4px + var(--hero-scroll-depth) * var(--hero-scroll-near-x)),
+        calc(-2.5px + var(--hero-scroll-depth) * var(--hero-scroll-near-y)),
+        10px
+      )
+      translate3d(var(--hero-pointer-near-x), var(--hero-pointer-near-y), 0);
   }
 }
 
 @keyframes hero-relational-alignment {
   from {
     transform: translate3d(
-      calc(
-        -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)
-      ),
-      calc(
-        1.25px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
-      ),
-      6px
-    );
+        calc(
+          -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)
+        ),
+        calc(
+          1.25px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
+        ),
+        6px
+      )
+      translate3d(var(--hero-pointer-near-x), var(--hero-pointer-near-y), 0);
   }
 
   to {
     transform: translate3d(
-      calc(3px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)),
-      calc(
-        -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
-      ),
-      6px
-    );
+        calc(
+          3px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-x)
+        ),
+        calc(
+          -1.5px + var(--hero-scroll-depth) * var(--hero-scroll-relationship-y)
+        ),
+        6px
+      )
+      translate3d(var(--hero-pointer-near-x), var(--hero-pointer-near-y), 0);
   }
 }
 
@@ -303,6 +371,21 @@
     animation: hero-depth-drift-near-mobile 36s ease-in-out -15s infinite
       alternate-reverse;
   }
+
+  .hero-convergence[data-motion-phase="entering"]
+    .hero-convergence__macro--mobile-axis {
+    --hero-macro-from-x: -14px;
+    --hero-macro-from-y: 9px;
+    animation: hero-macro-converge 1.9s cubic-bezier(0.22, 0.62, 0.32, 1) both;
+  }
+
+  .hero-convergence[data-motion-phase="entering"]
+    .hero-convergence__macro--mobile-planes {
+    --hero-macro-from-x: 10px;
+    --hero-macro-from-y: 6px;
+    animation: hero-macro-converge 1.9s cubic-bezier(0.22, 0.62, 0.32, 1) 80ms
+      both;
+  }
 }
 
 @keyframes hero-depth-drift-far-mobile {
@@ -361,6 +444,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-convergence [data-depth-layer] {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .hero-convergence .hero-convergence__macro {
     animation: none !important;
     transform: none !important;
     will-change: auto;

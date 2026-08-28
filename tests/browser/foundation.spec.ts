@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { devices, expect, test } from "@playwright/test";
 
 test("loads IBM Plex Sans as the primary production family", async ({
   page,
@@ -111,6 +111,129 @@ test("organizes Hero Convergence into three restrained perceptual layers", async
   expect(activeAnimationNames[0]).toMatch(/^hero-depth-drift-far(?:-mobile)?$/);
 });
 
+test("moves a small set of existing relationships from entrance into a living field", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "entering");
+
+  const macroRelationships = motionRoot.locator(
+    ".hero-convergence__field--desktop [data-macro-relationship]",
+  );
+  await expect(macroRelationships).toHaveCount(4);
+  await expect(macroRelationships.first()).toHaveCSS(
+    "animation-name",
+    /hero-macro-converge/,
+  );
+
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "living", {
+    timeout: 3000,
+  });
+  await context.close();
+});
+
+test("turns desktop pointer position into progressively stronger depth perspective and returns to neutral", async ({
+  browser,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Desktop-only pointer input");
+  const context = await browser.newContext({
+    viewport: { width: 1440, height: 900 },
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const hero = page.locator(".hero");
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "living", {
+    timeout: 3000,
+  });
+
+  await hero.hover({ position: { x: 1300, y: 140 } });
+  await expect
+    .poll(() =>
+      motionRoot.evaluate((root) =>
+        Math.hypot(
+          Number.parseFloat(
+            getComputedStyle(root).getPropertyValue("--hero-pointer-near-x"),
+          ),
+          Number.parseFloat(
+            getComputedStyle(root).getPropertyValue("--hero-pointer-near-y"),
+          ),
+        ),
+      ),
+    )
+    .toBeGreaterThan(4);
+
+  const depth = await motionRoot.evaluate((root) =>
+    ["far", "mid", "near"].map((name) =>
+      Math.hypot(
+        Number.parseFloat(
+          root.style.getPropertyValue(`--hero-pointer-${name}-x`),
+        ),
+        Number.parseFloat(
+          root.style.getPropertyValue(`--hero-pointer-${name}-y`),
+        ),
+      ),
+    ),
+  );
+  expect(depth[0]).toBeGreaterThan(0);
+  expect(depth[1]).toBeGreaterThan(depth[0]!);
+  expect(depth[2]).toBeGreaterThan(depth[1]!);
+
+  await hero.dispatchEvent("pointerleave");
+  await expect
+    .poll(() =>
+      motionRoot.evaluate((root) =>
+        Math.hypot(
+          Number.parseFloat(
+            root.style.getPropertyValue("--hero-pointer-near-x"),
+          ),
+          Number.parseFloat(
+            root.style.getPropertyValue("--hero-pointer-near-y"),
+          ),
+        ),
+      ),
+    )
+    .toBeLessThan(0.5);
+  await context.close();
+});
+
+test("keeps pointer perspective disabled on mobile while retaining an entrance", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    ...devices["Pixel 7"],
+    reducedMotion: "no-preference",
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "entering");
+  await expect(
+    motionRoot.locator(
+      ".hero-convergence__field--mobile [data-macro-relationship]",
+    ),
+  ).toHaveCount(2);
+  await page.dispatchEvent(".hero", "pointermove", {
+    pointerType: "touch",
+    clientX: 350,
+    clientY: 100,
+  });
+  expect(
+    await motionRoot.evaluate((root) =>
+      Number.parseFloat(root.style.getPropertyValue("--hero-pointer-near-x")),
+    ),
+  ).toBe(0);
+  await context.close();
+});
+
 test("starts desktop drift inside its perceptible phase with restrained cycles", async ({
   page,
 }) => {
@@ -204,10 +327,14 @@ test("keeps the approved Hero static when reduced motion is requested", async ({
     animations: Array.from(
       root.querySelectorAll<SVGGElement>("[data-depth-layer]"),
     ).map((layer) => getComputedStyle(layer).animationName),
+    macroAnimations: Array.from(
+      root.querySelectorAll<SVGGElement>("[data-macro-relationship]"),
+    ).map((layer) => getComputedStyle(layer).animationName),
   }));
 
   expect(motionState.scrollDepth.trim()).toBe("0");
   expect(new Set(motionState.animations)).toEqual(new Set(["none"]));
+  expect(new Set(motionState.macroAnimations)).toEqual(new Set(["none"]));
   await context.close();
 });
 
@@ -243,6 +370,29 @@ test("freezes the current Hero frame instead of snapping when it leaves view", a
   const farLayer = motionRoot.locator('[data-depth-layer="far"]').first();
   await expect(farLayer).toHaveCSS("animation-name", "hero-depth-drift-far");
   await expect(farLayer).toHaveCSS("animation-play-state", "paused");
+});
+
+test("suspends entrance convergence while the Hero is outside the viewport", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+  const motionRoot = page.locator("[data-hero-motion]");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "entering");
+
+  await page.evaluate(() => window.scrollTo(0, 1100));
+  await expect(motionRoot).toHaveAttribute("data-motion", "paused");
+  await expect(
+    motionRoot.locator("[data-macro-relationship]").first(),
+  ).toHaveCSS("animation-play-state", "paused");
+  await page.waitForTimeout(2400);
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "entering");
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(motionRoot).toHaveAttribute("data-motion", "active");
+  await expect(motionRoot).toHaveAttribute("data-motion-phase", "living", {
+    timeout: 3000,
+  });
 });
 
 test("keeps relational alignment disabled when the mobile Hero pauses", async ({
