@@ -14,7 +14,8 @@
 
 .hero__eyebrow,
 .hero__headline,
-.hero__supporting {
+.hero__supporting,
+.hero__contact {
   position: absolute;
   margin: 0;
 }
@@ -52,6 +53,21 @@
   font-weight: var(--font-weight-regular);
   line-height: 1.48;
   letter-spacing: var(--tracking-tight);
+}
+
+.hero__contact {
+  top: 36.5rem;
+  left: calc(var(--grid-margin) + 4rem);
+  width: fit-content;
+  border-bottom: var(--line-primary) solid var(--color-line);
+  font-size: var(--text-metadata);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+}
+
+.hero__contact:hover,
+.hero__contact:focus-visible {
+  border-bottom-color: var(--color-sky-primary);
 }
 
 .hero-convergence,
@@ -443,6 +459,11 @@
 
   .hero-convergence__field--desktop {
     display: block;
+  }
+
+  .hero__contact {
+    top: 44.25rem;
+    left: calc(var(--grid-margin) + 53.47vw);
   }
 }
 

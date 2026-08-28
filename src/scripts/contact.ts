@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl, DIRECT_WHATSAPP_MESSAGE } from "../config/contact";
+
 type BranchKey = "existing" | "emerging" | "problem";
 type FirstChoice = BranchKey | "direct";
 
@@ -6,6 +8,12 @@ const branchLabels: Record<FirstChoice, string> = {
   emerging: "Estou começando algo",
   problem: "Tem algo que preciso resolver",
   direct: "Prefiro explicar direto",
+};
+
+const contactMessageLeads: Record<BranchKey, string> = {
+  existing: "Já tenho algo",
+  emerging: "Estou começando algo",
+  problem: "Tenho algo que preciso resolver",
 };
 
 const moveFocus = (element: HTMLElement | null) => {
@@ -19,11 +27,14 @@ const initializeContact = (root: HTMLElement) => {
   );
   const readyPanel = root.querySelector<HTMLElement>("[data-contact-ready]");
   const context = root.querySelector<HTMLElement>("[data-contact-context]");
+  const destination = root.querySelector<HTMLAnchorElement>(
+    "[data-contact-destination]",
+  );
   const restartControls = Array.from(
     root.querySelectorAll<HTMLButtonElement>("[data-contact-restart]"),
   );
 
-  if (!firstPanel || !readyPanel || !context) return;
+  if (!firstPanel || !readyPanel || !context || !destination) return;
 
   let firstChoice: FirstChoice | null = null;
   let secondChoice: string | null = null;
@@ -91,6 +102,11 @@ const initializeContact = (root: HTMLElement) => {
       control.hidden = false;
     });
     updateContext();
+    const message =
+      firstChoice === "direct"
+        ? DIRECT_WHATSAPP_MESSAGE
+        : `Olá, Marco. ${firstChoice ? contactMessageLeads[firstChoice] : "Tenho um projeto"} e ${secondChoice?.toLocaleLowerCase("pt-BR") ?? "gostaria de explicar melhor"}. Gostaria de conversar sobre o projeto.`;
+    destination.href = buildWhatsAppUrl(message);
     moveFocus(readyPanel.querySelector<HTMLElement>("h3"));
   };
 

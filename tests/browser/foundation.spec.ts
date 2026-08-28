@@ -69,7 +69,9 @@ test("renders the frozen Hero copy with a single primary heading", async ({
   ).toBeVisible();
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
   await expect(page.getByRole("navigation")).toHaveCount(0);
-  await expect(page.getByRole("link")).toHaveCount(0);
+  await expect(
+    page.getByRole("link", { name: "Conversar sobre um projeto" }),
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/554298808090\?text=/);
 });
 
 test("keeps Convergence decorative and outside the accessibility tree", async ({
@@ -950,6 +952,7 @@ test("keeps Marco / Prática readable without client-side JavaScript", async ({
 const contactBranches = [
   {
     first: "Já tenho algo",
+    messageLead: "Já tenho algo",
     question: "O que está pedindo atenção agora?",
     options: [
       "Quero melhorar",
@@ -960,6 +963,7 @@ const contactBranches = [
   },
   {
     first: "Estou começando algo",
+    messageLead: "Estou começando algo",
     question: "Como isso está tomando forma?",
     options: [
       "Já tenho uma direção",
@@ -970,6 +974,7 @@ const contactBranches = [
   },
   {
     first: "Tem algo que preciso resolver",
+    messageLead: "Tenho algo que preciso resolver",
     question: "Como você está enxergando isso hoje?",
     options: [
       "Já consigo explicar",
@@ -1008,8 +1013,8 @@ test("renders Contact with its exact intro and first decisions", async ({
     section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
   ).toHaveCount(0);
   await expect(
-    section.getByRole("link", { name: "contato@marcoamaral.dev" }),
-  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
+    section.getByRole("link", { name: "WhatsApp comercial" }),
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/554298808090\?text=/);
 });
 
 test("maps Contact decisions to its own geometric branch state", async ({
@@ -1051,14 +1056,29 @@ for (const branch of contactBranches) {
       await expect(
         section.getByRole("heading", {
           level: 3,
-          name: "Já temos um ponto de partida.",
+          name: "Vamos conversar sobre isso.",
         }),
       ).toBeFocused();
       await expect(
-        section.getByText("Podemos seguir daqui.", { exact: true }),
+        section.getByText(
+          "Seu ponto de partida já está organizado. Você pode levar esse contexto para uma conversa comigo no WhatsApp.",
+          { exact: true },
+        ),
       ).toBeVisible();
       await expect(section.locator("[data-contact-context]")).toContainText(
         `${branch.first} → ${option}`,
+      );
+
+      const destination = section.getByRole("link", {
+        name: "Conversar no WhatsApp",
+      });
+      await expect(destination).toHaveAttribute(
+        "href",
+        /^https:\/\/wa\.me\/554298808090\?text=/,
+      );
+      const href = await destination.getAttribute("href");
+      expect(new URL(href!).searchParams.get("text")).toBe(
+        `Olá, Marco. ${branch.messageLead} e ${option.toLocaleLowerCase("pt-BR")}. Gostaria de conversar sobre o projeto.`,
       );
     });
   }
@@ -1076,15 +1096,21 @@ test("the direct path skips the contextual question", async ({ page }) => {
   await expect(
     section.getByRole("heading", {
       level: 3,
-      name: "Já temos um ponto de partida.",
+      name: "Vamos conversar sobre isso.",
     }),
   ).toBeFocused();
   await expect(section.locator("[data-contact-context]")).toHaveText(
     "Prefiro explicar direto",
   );
   await expect(
-    section.getByRole("link", { name: "Continuar por e-mail" }),
-  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
+    section.getByRole("link", { name: "Conversar no WhatsApp" }),
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/554298808090\?text=/);
+  const directHref = await section
+    .getByRole("link", { name: "Conversar no WhatsApp" })
+    .getAttribute("href");
+  expect(new URL(directHref!).searchParams.get("text")).toBe(
+    "Olá, Marco. Tenho um projeto ou problema que gostaria de explicar diretamente.",
+  );
 });
 
 test("keeps Contact convergence decorative", async ({ page }) => {
@@ -1188,7 +1214,7 @@ test("completes Contact with keyboard controls and visible focus", async ({
   await expect(
     section.getByRole("heading", {
       level: 3,
-      name: "Já temos um ponto de partida.",
+      name: "Vamos conversar sobre isso.",
     }),
   ).toBeFocused();
   await expect(secondChoice).toHaveCount(0);
@@ -1214,8 +1240,8 @@ test("keeps Contact truthful and readable without JavaScript", async ({
     }),
   ).toBeVisible();
   await expect(
-    section.getByRole("link", { name: "contato@marcoamaral.dev" }),
-  ).toHaveAttribute("href", "mailto:contato@marcoamaral.dev");
+    section.getByRole("link", { name: "WhatsApp comercial" }),
+  ).toHaveAttribute("href", /^https:\/\/wa\.me\/554298808090\?text=/);
 
   await context.close();
 });

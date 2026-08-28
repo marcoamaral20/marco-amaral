@@ -1,6 +1,9 @@
 ---
 import HeroConvergence from "../components/convergence/HeroConvergence.astro";
+import { buildWhatsAppUrl, GENERIC_WHATSAPP_MESSAGE } from "../config/contact";
 import "../styles/sections/hero.css";
+
+const heroContactUrl = buildWhatsAppUrl(GENERIC_WHATSAPP_MESSAGE);
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -18,6 +21,13 @@ import "../styles/sections/hero.css";
       Entender o problema, encontrar sua estrutura e construir um sistema real
       fazem parte do mesmo trabalho.
     </p>
+
+    <a
+      class="hero__contact"
+      href={heroContactUrl}
+      target="_blank"
+      rel="noreferrer">Conversar sobre um projeto</a
+    >
   </div>
 </section>
 
