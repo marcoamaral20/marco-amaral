@@ -1,0 +1,1818 @@
+{
+  "arial": {
+    "desktop-1440-light": {
+      "computedFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 629.83,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 60.84
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 150.34
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 133.75
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 102.86
+        },
+        {
+          "text": "PRODUTO",
+          "width": 224.02
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 225.45
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 96.08
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 162.77
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.44
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 151.17
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 112.05
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 217
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 217.93
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 153.88
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 173.48
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 189.42
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.07
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 218.84
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 302.4
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "desktop-1440-dark": {
+      "computedFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 629.83,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 60.84
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 150.34
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 133.75
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 102.86
+        },
+        {
+          "text": "PRODUTO",
+          "width": 224.02
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 225.45
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 96.08
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 162.77
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.44
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 151.17
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 112.05
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 217
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 217.93
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 153.88
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 173.48
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 189.42
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.07
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 218.84
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 302.4
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "tablet-820-light": {
+      "computedFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 514.98,
+      "heroHeadlineBoxWidth": 688,
+      "heroHeadlineHeight": 145.91,
+      "heroHeadlineToSupportingGap": 230.09,
+      "heroSupportingLines": 4,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 60.84
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 150.34
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 133.75
+        }
+      ],
+      "territoryDescriptionLines": [5, 5, 6],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 102.86
+        },
+        {
+          "text": "PRODUTO",
+          "width": 224.02
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 225.45
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": -99.69,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 2, 2, 2],
+      "contactAvailableTextWidth": 130.92,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 96.08
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 162.77
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.44
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 151.17
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 112.05
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 217
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 217.93
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 153.88
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 173.48
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 189.42
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.07
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 218.84
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 302.4
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        }
+      ],
+      "contactAllOptionLines": [1, 2, 2, 2, 1, 2, 3, 1, 2, 2, 2, 1, 2, 2, 3, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 820,
+      "viewportWidth": 820
+    },
+    "mobile-390-light": {
+      "computedFamily": "Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 347.84,
+      "heroHeadlineBoxWidth": 346,
+      "heroHeadlineHeight": 101.88,
+      "heroHeadlineToSupportingGap": 180.12,
+      "heroSupportingLines": 4,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 56.5
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 139.59
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 124.2
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 85.72
+        },
+        {
+          "text": "PRODUTO",
+          "width": 186.69
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 187.88
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": 57.81,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 314.03,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 96.08
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 162.77
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.44
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 151.17
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 112.05
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 217
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 217.93
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 153.88
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 173.48
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 189.42
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.07
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 218.84
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 302.4
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 106.7
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 390,
+      "viewportWidth": 390
+    }
+  },
+  "inter": {
+    "desktop-1440-light": {
+      "computedFamily": "\"Inter Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 663.17,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 59.81
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 147.14
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 132.95
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 101.08
+        },
+        {
+          "text": "PRODUTO",
+          "width": 219.75
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 224.09
+        }
+      ],
+      "practiceNoteLines": 8,
+      "practiceNoteToFirstPrincipleGap": -30.19,
+      "contactIntroLines": 3,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 2, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 102.3
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 172.66
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 228.32
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 162.44
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 118.18
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 231.7
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 232.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 163.63
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 184.75
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 202.73
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 146.59
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 233.43
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 322.67
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "desktop-1440-dark": {
+      "computedFamily": "\"Inter Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 663.17,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 59.81
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 147.14
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 132.95
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 101.08
+        },
+        {
+          "text": "PRODUTO",
+          "width": 219.75
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 224.09
+        }
+      ],
+      "practiceNoteLines": 8,
+      "practiceNoteToFirstPrincipleGap": -30.19,
+      "contactIntroLines": 3,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 2, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 102.3
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 172.66
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 228.32
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 162.44
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 118.18
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 231.7
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 232.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 163.63
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 184.75
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 202.73
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 146.59
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 233.43
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 322.67
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 2, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "tablet-820-light": {
+      "computedFamily": "\"Inter Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 542.52,
+      "heroHeadlineBoxWidth": 688,
+      "heroHeadlineHeight": 145.91,
+      "heroHeadlineToSupportingGap": 230.09,
+      "heroSupportingLines": 5,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 59.81
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 147.14
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 132.95
+        }
+      ],
+      "territoryDescriptionLines": [5, 6, 6],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 101.08
+        },
+        {
+          "text": "PRODUTO",
+          "width": 219.75
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 224.09
+        }
+      ],
+      "practiceNoteLines": 11,
+      "practiceNoteToFirstPrincipleGap": -134.44,
+      "contactIntroLines": 3,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 2, 2, 2],
+      "contactAvailableTextWidth": 130.92,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 102.3
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 172.66
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 228.32
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 162.44
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 118.18
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 231.7
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 232.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 163.63
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 184.75
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 202.73
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 146.59
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 233.43
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 322.67
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        }
+      ],
+      "contactAllOptionLines": [1, 2, 2, 2, 1, 2, 3, 1, 2, 2, 2, 1, 2, 3, 3, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 820,
+      "viewportWidth": 820
+    },
+    "mobile-390-light": {
+      "computedFamily": "\"Inter Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 366.69,
+      "heroHeadlineBoxWidth": 346,
+      "heroHeadlineHeight": 101.88,
+      "heroHeadlineToSupportingGap": 180.12,
+      "heroSupportingLines": 4,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 55.53
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 136.63
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 123.47
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 84.23
+        },
+        {
+          "text": "PRODUTO",
+          "width": 183.13
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 186.73
+        }
+      ],
+      "practiceNoteLines": 11,
+      "practiceNoteToFirstPrincipleGap": 26.81,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 314.03,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 102.3
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 172.66
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 228.32
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 162.44
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 118.18
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 231.7
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 232.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 163.63
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 184.75
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 202.73
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 146.59
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 233.43
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 322.67
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 114.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 390,
+      "viewportWidth": 390
+    }
+  },
+  "source-sans-3": {
+    "desktop-1440-light": {
+      "computedFamily": "\"Source Sans 3 Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 580.33,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 50.3
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 125.73
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 109.11
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 84.78
+        },
+        {
+          "text": "PRODUTO",
+          "width": 188.23
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 183.2
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 90.07
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 150.79
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 198.21
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 143.9
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 105.99
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 201.95
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 204.37
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 144.64
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 163.27
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 177.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 126.31
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 207.03
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 284.41
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "desktop-1440-dark": {
+      "computedFamily": "\"Source Sans 3 Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 580.33,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 50.3
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 125.73
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 109.11
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 84.78
+        },
+        {
+          "text": "PRODUTO",
+          "width": 188.23
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 183.2
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 90.07
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 150.79
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 198.21
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 143.9
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 105.99
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 201.95
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 204.37
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 144.64
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 163.27
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 177.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 126.31
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 207.03
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 284.41
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "tablet-820-light": {
+      "computedFamily": "\"Source Sans 3 Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 474.08,
+      "heroHeadlineBoxWidth": 688,
+      "heroHeadlineHeight": 145.91,
+      "heroHeadlineToSupportingGap": 230.09,
+      "heroSupportingLines": 4,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 50.3
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 125.73
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 109.11
+        }
+      ],
+      "territoryDescriptionLines": [5, 5, 5],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 84.78
+        },
+        {
+          "text": "PRODUTO",
+          "width": 188.23
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 183.2
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": -99.69,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 2, 2, 2],
+      "contactAvailableTextWidth": 130.92,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 90.07
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 150.79
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 198.21
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 143.9
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 105.99
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 201.95
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 204.37
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 144.64
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 163.27
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 177.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 126.31
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 207.03
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 284.41
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        }
+      ],
+      "contactAllOptionLines": [1, 2, 2, 2, 1, 2, 3, 1, 2, 2, 2, 1, 1, 2, 3, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 820,
+      "viewportWidth": 820
+    },
+    "mobile-390-light": {
+      "computedFamily": "\"Source Sans 3 Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 319.88,
+      "heroHeadlineBoxWidth": 346,
+      "heroHeadlineHeight": 101.88,
+      "heroHeadlineToSupportingGap": 180.12,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 46.7
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 116.75
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 101.33
+        }
+      ],
+      "territoryDescriptionLines": [3, 3, 3],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 70.64
+        },
+        {
+          "text": "PRODUTO",
+          "width": 156.86
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 152.67
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": 57.81,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 314.03,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 90.07
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 150.79
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 198.21
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 143.9
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 105.99
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 201.95
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 204.37
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 144.64
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 163.27
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 177.46
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 126.31
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 207.03
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 284.41
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 100.85
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 390,
+      "viewportWidth": 390
+    }
+  },
+  "ibm-plex-sans": {
+    "desktop-1440-light": {
+      "computedFamily": "\"IBM Plex Sans Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 629.02,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 56.63
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 135.92
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 124.83
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 95.63
+        },
+        {
+          "text": "PRODUTO",
+          "width": 203.44
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 210.16
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 95.94
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 161.95
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.9
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 154.66
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 113.1
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 218.29
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 219.02
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 154.51
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 175.47
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 190.75
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.16
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 222.7
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 305.28
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "desktop-1440-dark": {
+      "computedFamily": "\"IBM Plex Sans Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 629.02,
+      "heroHeadlineBoxWidth": 760,
+      "heroHeadlineHeight": 176.63,
+      "heroHeadlineToSupportingGap": 197.37,
+      "heroSupportingLines": 3,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 56.63
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 135.92
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 124.83
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 95.63
+        },
+        {
+          "text": "PRODUTO",
+          "width": 203.44
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 210.16
+        }
+      ],
+      "practiceNoteLines": 7,
+      "practiceNoteToFirstPrincipleGap": 4.56,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 220,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 95.94
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 161.95
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.9
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 154.66
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 113.1
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 218.29
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 219.02
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 154.51
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 175.47
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 190.75
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.16
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 222.7
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 305.28
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 1440,
+      "viewportWidth": 1440
+    },
+    "tablet-820-light": {
+      "computedFamily": "\"IBM Plex Sans Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 514.3,
+      "heroHeadlineBoxWidth": 688,
+      "heroHeadlineHeight": 145.91,
+      "heroHeadlineToSupportingGap": 230.09,
+      "heroSupportingLines": 5,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 56.63
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 135.92
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 124.83
+        }
+      ],
+      "territoryDescriptionLines": [5, 5, 6],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 95.63
+        },
+        {
+          "text": "PRODUTO",
+          "width": 203.44
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 210.16
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": -99.69,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 2, 2, 2],
+      "contactAvailableTextWidth": 130.92,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 95.94
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 161.95
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.9
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 154.66
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 113.1
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 218.29
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 219.02
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 154.51
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 175.47
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 190.75
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.16
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 222.7
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 305.28
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        }
+      ],
+      "contactAllOptionLines": [1, 2, 2, 2, 1, 2, 3, 1, 2, 2, 2, 1, 2, 3, 3, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 820,
+      "viewportWidth": 820
+    },
+    "mobile-390-light": {
+      "computedFamily": "\"IBM Plex Sans Bakeoff\", Arial, \"Helvetica Neue\", Helvetica, sans-serif",
+      "heroFirstLineWidth": 347.39,
+      "heroHeadlineBoxWidth": 346,
+      "heroHeadlineHeight": 101.88,
+      "heroHeadlineToSupportingGap": 180.12,
+      "heroSupportingLines": 4,
+      "territoryWidths": [
+        {
+          "text": "WEB",
+          "width": 52.58
+        },
+        {
+          "text": "PRODUTOS",
+          "width": 126.22
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 115.92
+        }
+      ],
+      "territoryDescriptionLines": [4, 4, 4],
+      "workWidths": [
+        {
+          "text": "WEB",
+          "width": 79.69
+        },
+        {
+          "text": "PRODUTO",
+          "width": 169.53
+        },
+        {
+          "text": "SISTEMAS",
+          "width": 175.13
+        }
+      ],
+      "practiceNoteLines": 10,
+      "practiceNoteToFirstPrincipleGap": 57.81,
+      "contactIntroLines": 2,
+      "contactQuestionLines": 1,
+      "contactDefaultOptionLines": [1, 1, 1, 1],
+      "contactAvailableTextWidth": 314.03,
+      "contactOptionWidths": [
+        {
+          "text": "Já tenho algo",
+          "width": 95.94
+        },
+        {
+          "text": "Estou começando algo",
+          "width": 161.95
+        },
+        {
+          "text": "Tem algo que preciso resolver",
+          "width": 213.9
+        },
+        {
+          "text": "Prefiro explicar direto",
+          "width": 154.66
+        },
+        {
+          "text": "Quero melhorar",
+          "width": 113.1
+        },
+        {
+          "text": "Talvez precise mudar bastante",
+          "width": 218.29
+        },
+        {
+          "text": "Não está funcionando tão bem",
+          "width": 219.02
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já tenho uma direção",
+          "width": 154.51
+        },
+        {
+          "text": "Ainda estou entendendo",
+          "width": 175.47
+        },
+        {
+          "text": "Quero tornar isso concreto",
+          "width": 190.75
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        },
+        {
+          "text": "Já consigo explicar",
+          "width": 136.16
+        },
+        {
+          "text": "Ainda estou tentando entender",
+          "width": 222.7
+        },
+        {
+          "text": "Tem partes que não funcionam bem juntas",
+          "width": 305.28
+        },
+        {
+          "text": "Prefiro explicar",
+          "width": 108.51
+        }
+      ],
+      "contactAllOptionLines": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "horizontalOverflow": false,
+      "documentWidth": 390,
+      "viewportWidth": 390
+    }
+  }
+}
