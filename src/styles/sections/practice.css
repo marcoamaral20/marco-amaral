@@ -128,12 +128,17 @@
   color: var(--color-line);
 }
 
-.practice-convergence__line path {
+.practice-convergence__line path,
+.practice-convergence__residual path {
   fill: none;
   stroke: currentColor;
   stroke-width: 0.75;
   opacity: 0.5;
   vector-effect: non-scaling-stroke;
+}
+
+.practice-convergence__residual path {
+  opacity: 0.38;
 }
 
 .practice-convergence__plane path {
@@ -143,6 +148,99 @@
 
 :root[data-theme="dark"] .practice-convergence__plane path {
   fill: #657078;
+}
+
+.practice[data-motion-state="entering"] [data-motion-group="reduction"] {
+  animation: practice-enter-reduction 2.1s cubic-bezier(0.24, 0.62, 0.32, 1)
+    both;
+}
+
+.practice[data-motion-state="entering"] [data-motion-group="plane"] {
+  animation: practice-enter-plane 2.1s cubic-bezier(0.24, 0.62, 0.32, 1) 120ms
+    both;
+}
+
+.practice[data-motion-state="entering"] [data-motion-group="residual"] {
+  animation: practice-enter-residual 2.1s cubic-bezier(0.24, 0.62, 0.32, 1) 70ms
+    both;
+}
+
+.practice[data-motion-state="living"] [data-motion-group="reduction"] {
+  animation: practice-live-reduction 15.2s ease-in-out -3.8s infinite;
+}
+
+.practice[data-motion-state="living"] [data-motion-group="plane"] {
+  animation: practice-live-plane 12.6s ease-in-out -5.1s infinite;
+}
+
+.practice[data-motion-state="living"] [data-motion-group="residual"] {
+  animation: practice-live-residual 17.4s ease-in-out -7.2s infinite;
+}
+
+@keyframes practice-enter-reduction {
+  from {
+    transform: translate3d(22px, -9px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes practice-enter-plane {
+  from {
+    transform: translate3d(-16px, 7px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes practice-enter-residual {
+  from {
+    transform: translate3d(-18px, 10px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes practice-live-reduction {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  44% {
+    transform: translate3d(-4px, 2px, 0);
+  }
+  78% {
+    transform: translate3d(3px, -1px, 0);
+  }
+}
+
+@keyframes practice-live-plane {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  38% {
+    transform: translate3d(5px, -3px, 0);
+  }
+  72% {
+    transform: translate3d(-2px, 2px, 0);
+  }
+}
+
+@keyframes practice-live-residual {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  36% {
+    transform: translate3d(3px, -2px, 0);
+  }
+  71% {
+    transform: translate3d(-3px, 1px, 0);
+  }
 }
 
 @media (min-width: 48rem) {

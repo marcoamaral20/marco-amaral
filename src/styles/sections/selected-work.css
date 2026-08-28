@@ -118,6 +118,202 @@
   vector-effect: non-scaling-stroke;
 }
 
+.work-entry[data-motion-state="entering"] [data-motion-group] {
+  transform-box: view-box;
+  transform-origin: center;
+  animation: work-evidence-enter 1.75s cubic-bezier(0.24, 0.62, 0.32, 1) both;
+}
+
+.work-entry[data-motion-state="entering"] [data-motion-group*="field"] {
+  --work-enter-x: -14px;
+  --work-enter-y: 7px;
+}
+
+.work-entry[data-motion-state="entering"] [data-motion-group*="evidence"],
+.work-entry[data-motion-state="entering"] [data-motion-group="structure"] {
+  --work-enter-x: 12px;
+  --work-enter-y: -6px;
+  animation-delay: 100ms;
+}
+
+.work-entry[data-motion-state="entering"] [data-motion-group="relation"] {
+  --work-enter-x: -8px;
+  --work-enter-y: 4px;
+  animation-delay: 160ms;
+}
+
+.work-entry[data-motion-state="living"] [data-motion-group*="field"] {
+  animation: work-live-field 11.3s ease-in-out -2.3s infinite;
+}
+
+.work-entry[data-motion-state="living"] [data-motion-group*="evidence"],
+.work-entry[data-motion-state="living"] [data-motion-group="structure"] {
+  animation: work-live-evidence 8.7s ease-in-out -4.4s infinite;
+}
+
+.work-entry[data-motion-state="living"] [data-motion-group="relation"] {
+  animation: work-live-relation 7.6s ease-in-out -1.7s infinite;
+}
+
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="wide-field"] {
+  animation: product-live-wide 10.4s ease-in-out -4.7s infinite;
+}
+
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="wide-evidence"] {
+  animation: product-live-wide-evidence 7.9s ease-in-out -2.2s infinite;
+}
+
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="tall-field"],
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="tall-evidence"] {
+  animation: product-live-tall 12.7s ease-in-out -6.1s infinite;
+}
+
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="small-field"],
+.work-entry--product[data-motion-state="living"]
+  [data-motion-group="small-evidence"] {
+  animation: product-live-small 6.8s ease-in-out -3.5s infinite;
+}
+
+.work-entry--systems[data-motion-state="living"] [data-motion-group="field"] {
+  animation: systems-live-field 10.1s ease-in-out -2.6s infinite;
+}
+
+.work-entry--systems[data-motion-state="living"]
+  [data-motion-group="structure"] {
+  animation: systems-live-structure 8.2s ease-in-out -4.8s infinite;
+}
+
+@keyframes work-evidence-enter {
+  from {
+    transform: translate3d(var(--work-enter-x), var(--work-enter-y), 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes work-live-field {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  41% {
+    transform: translate3d(4px, -3px, 0);
+  }
+  74% {
+    transform: translate3d(-3px, 1px, 0);
+  }
+}
+
+@keyframes work-live-evidence {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(-5px, 3px, 0);
+  }
+  69% {
+    transform: translate3d(5px, -2px, 0);
+  }
+}
+
+@keyframes work-live-relation {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  46% {
+    transform: translate3d(7px, -3px, 0);
+  }
+  81% {
+    transform: translate3d(1px, 2px, 0);
+  }
+}
+
+@keyframes product-live-wide {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  38% {
+    transform: translate3d(5px, -2px, 0);
+  }
+  73% {
+    transform: translate3d(-2px, 2px, 0);
+  }
+}
+
+@keyframes product-live-wide-evidence {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  44% {
+    transform: translate3d(-6px, 3px, 0);
+  }
+  79% {
+    transform: translate3d(3px, -1px, 0);
+  }
+}
+
+@keyframes product-live-tall {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  31% {
+    transform: translate3d(-3px, 5px, 0);
+  }
+  68% {
+    transform: translate3d(2px, -4px, 0);
+  }
+}
+
+@keyframes product-live-small {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  47% {
+    transform: translate3d(6px, -3px, 0);
+  }
+  82% {
+    transform: translate3d(-2px, 1px, 0);
+  }
+}
+
+@keyframes systems-live-field {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  35% {
+    transform: translate3d(4px, 3px, 0);
+  }
+  72% {
+    transform: translate3d(-4px, -2px, 0);
+  }
+}
+
+@keyframes systems-live-structure {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  41% {
+    transform: translate3d(-7px, 2px, 0);
+  }
+  77% {
+    transform: translate3d(4px, -3px, 0);
+  }
+}
+
 .work-placeholder__secondary path {
   stroke-width: 0.75;
   opacity: 0.65;

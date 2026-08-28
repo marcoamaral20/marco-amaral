@@ -48,6 +48,15 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  [data-section-motion] [data-motion-group] {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .contact-convergence__branch {
+    transition: none !important;
+    transform: none !important;
+  }
   *,
   *::before,
   *::after {

@@ -6,13 +6,27 @@
   focusable="false"
   data-contact-convergence
 >
-  <g class="contact-convergence__lines">
+  <g class="contact-convergence__lines" data-motion-group="paths">
     <path d="M-80 652H386"></path>
     <path d="M414 652H724L884 570"></path>
-    <path d="M884 570L1120 570L1510 430"></path>
-    <path d="M884 570L1082 706L1510 706"></path>
+    <g class="contact-convergence__branch contact-convergence__branch--upper">
+      <path d="M884 570L1120 570L1510 430"></path>
+      <path d="M1120 570V454"></path>
+    </g>
+    <g class="contact-convergence__branch contact-convergence__branch--lower">
+      <path d="M884 570L1082 706L1510 706"></path>
+      <path d="M1082 706V824"></path>
+    </g>
+    <g class="contact-convergence__branch contact-convergence__branch--direct">
+      <path d="M724 652L928 790L1214 790L1510 888"></path>
+      <path d="M1214 790V916"></path>
+    </g>
+    <path d="M72 834H318L438 786"></path>
+    <path d="M1228 274L1370 324L1510 306"></path>
   </g>
-  <g class="contact-convergence__plane">
+  <g class="contact-convergence__plane" data-motion-group="plane">
     <path d="M392 648H408V656H392Z"></path>
+    <path d="M876 566H892V574H876Z"></path>
+    <path d="M716 648H732V656H716Z"></path>
   </g>
 </svg>

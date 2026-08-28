@@ -111,6 +111,18 @@ test("organizes Hero Convergence into three restrained perceptual layers", async
   expect(activeAnimationNames[0]).toMatch(/^hero-depth-drift-far(?:-mobile)?$/);
 });
 
+test("increases Hero density while preserving an open headline field", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const desktopField = page.locator(".hero-convergence__field--desktop");
+  expect(await desktopField.locator("path").count()).toBeGreaterThanOrEqual(90);
+  await expect(page.locator(".hero__copy")).toHaveCSS("z-index", "2");
+  await expect(page.locator(".hero-convergence")).toHaveCSS("z-index", "1");
+});
+
 test("moves a small set of existing relationships from entrance into a living field", async ({
   browser,
 }) => {
@@ -556,6 +568,83 @@ test("renders Territórios in semantic reading order with the frozen copy", asyn
   await expect(section.getByRole("link")).toHaveCount(0);
 });
 
+test("awakens each page composition once and keeps it living after it leaves view", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/");
+
+  const compositions = page.locator("[data-section-motion]");
+  await expect(compositions).toHaveCount(6);
+  const territories = page.locator('[data-section-motion="territories"]');
+  await expect(territories).toHaveAttribute("data-motion-state", "dormant");
+
+  await territories.scrollIntoViewIfNeeded();
+  await expect(territories).toHaveAttribute("data-motion-state", "living", {
+    timeout: 3000,
+  });
+  await expect(territories.locator("[data-motion-group]").first()).toHaveCSS(
+    "animation-iteration-count",
+    "infinite",
+  );
+
+  await page
+    .locator('[data-section-motion="contact"]')
+    .scrollIntoViewIfNeeded();
+  await expect(territories).toHaveAttribute("data-motion-state", "living");
+  await expect(territories.locator("[data-motion-group]").first()).toHaveCSS(
+    "animation-play-state",
+    "running",
+  );
+
+  await territories.scrollIntoViewIfNeeded();
+  await expect(territories).toHaveAttribute("data-motion-state", "living");
+});
+
+test("keeps every page composition static for reduced motion and without JavaScript", async ({
+  browser,
+}) => {
+  const reducedContext = await browser.newContext({ reducedMotion: "reduce" });
+  const reducedPage = await reducedContext.newPage();
+  await reducedPage.goto("/");
+  const reducedCompositions = reducedPage.locator("[data-section-motion]");
+  await expect(reducedCompositions).toHaveCount(6);
+  await expect(reducedCompositions.first()).toHaveAttribute(
+    "data-motion-state",
+    "reduced",
+  );
+  expect(
+    await reducedCompositions.evaluateAll((roots) =>
+      roots.every((root) =>
+        Array.from(root.querySelectorAll("[data-motion-group]")).every(
+          (group) => getComputedStyle(group).animationName === "none",
+        ),
+      ),
+    ),
+  ).toBe(true);
+  await reducedContext.close();
+
+  const staticContext = await browser.newContext({ javaScriptEnabled: false });
+  const staticPage = await staticContext.newPage();
+  await staticPage.goto("/");
+  const staticCompositions = staticPage.locator("[data-section-motion]");
+  await expect(staticCompositions).toHaveCount(6);
+  await expect(staticCompositions.first()).not.toHaveAttribute(
+    "data-motion-state",
+    /.+/,
+  );
+  expect(
+    await staticCompositions.evaluateAll((roots) =>
+      roots.every((root) =>
+        Array.from(root.querySelectorAll("[data-motion-group]")).every(
+          (group) => getComputedStyle(group).animationName === "none",
+        ),
+      ),
+    ),
+  ).toBe(true);
+  await staticContext.close();
+});
+
 test("keeps Territórios geometry decorative and purpose-built", async ({
   page,
 }) => {
@@ -901,6 +990,28 @@ test("renders Contact with its exact intro and first decisions", async ({
     section.getByText("CONTACT DESTINATION PENDING", { exact: true }),
   ).toBeVisible();
   await expect(section.getByRole("link")).toHaveCount(0);
+});
+
+test("maps Contact decisions to its own geometric branch state", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const contact = page.locator("[data-contact]");
+  await contact.scrollIntoViewIfNeeded();
+  await expect(contact).toHaveAttribute("data-contact-geometry-state", "start");
+
+  await page.getByRole("button", { name: "Já tenho algo" }).click();
+  await expect(contact).toHaveAttribute(
+    "data-contact-geometry-state",
+    "existing",
+  );
+
+  await page.getByRole("button", { name: "Alterar ponto de partida" }).click();
+  await page.getByRole("button", { name: "Prefiro explicar direto" }).click();
+  await expect(contact).toHaveAttribute(
+    "data-contact-geometry-state",
+    "direct",
+  );
 });
 
 for (const branch of contactBranches) {

@@ -213,6 +213,103 @@
   fill: #657078;
 }
 
+.contact-convergence__branch {
+  transform-box: view-box;
+  transform-origin: center;
+  transition: transform 900ms cubic-bezier(0.24, 0.62, 0.32, 1);
+}
+
+.contact[data-contact-geometry-state="existing"]
+  .contact-convergence__branch--upper {
+  transform: translate3d(7px, -4px, 0);
+}
+
+.contact[data-contact-geometry-state="existing"]
+  .contact-convergence__branch--lower {
+  transform: translate3d(-3px, 2px, 0);
+}
+
+.contact[data-contact-geometry-state="emerging"]
+  .contact-convergence__branch--lower {
+  transform: translate3d(6px, -3px, 0);
+}
+
+.contact[data-contact-geometry-state="problem"]
+  .contact-convergence__branch--upper {
+  transform: translate3d(-5px, 3px, 0);
+}
+
+.contact[data-contact-geometry-state="problem"]
+  .contact-convergence__branch--lower {
+  transform: translate3d(4px, 2px, 0);
+}
+
+.contact[data-contact-geometry-state="direct"]
+  .contact-convergence__branch--direct {
+  transform: translate3d(8px, -4px, 0);
+}
+
+.contact[data-motion-state="entering"] [data-motion-group="paths"] {
+  animation: contact-enter-paths 1.85s cubic-bezier(0.24, 0.62, 0.32, 1) both;
+}
+
+.contact[data-motion-state="entering"] [data-motion-group="plane"] {
+  animation: contact-enter-plane 1.85s cubic-bezier(0.24, 0.62, 0.32, 1) 110ms
+    both;
+}
+
+.contact[data-motion-state="living"] [data-motion-group="paths"] {
+  animation: contact-live-paths 9.8s ease-in-out -2.7s infinite;
+}
+
+.contact[data-motion-state="living"] [data-motion-group="plane"] {
+  animation: contact-live-plane 7.9s ease-in-out -4.2s infinite;
+}
+
+@keyframes contact-enter-paths {
+  from {
+    transform: translate3d(-20px, 8px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes contact-enter-plane {
+  from {
+    transform: translate3d(14px, -6px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes contact-live-paths {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  35% {
+    transform: translate3d(5px, -3px, 0);
+  }
+  67% {
+    transform: translate3d(-4px, 2px, 0);
+  }
+}
+
+@keyframes contact-live-plane {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  42% {
+    transform: translate3d(-6px, 3px, 0);
+  }
+  76% {
+    transform: translate3d(3px, -2px, 0);
+  }
+}
+
 [hidden] {
   display: none !important;
 }

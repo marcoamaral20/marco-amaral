@@ -27,6 +27,7 @@ const initializeContact = (root: HTMLElement) => {
 
   let firstChoice: FirstChoice | null = null;
   let secondChoice: string | null = null;
+  root.dataset.contactGeometryState = "start";
 
   const hideSecondPanels = () => {
     secondPanels.forEach((panel) => {
@@ -43,6 +44,7 @@ const initializeContact = (root: HTMLElement) => {
   };
 
   const showStart = () => {
+    root.dataset.contactGeometryState = "start";
     firstChoice = null;
     secondChoice = null;
     firstPanel.hidden = false;
@@ -61,6 +63,7 @@ const initializeContact = (root: HTMLElement) => {
   };
 
   const showSecondDecision = (branch: BranchKey) => {
+    root.dataset.contactGeometryState = branch;
     firstChoice = branch;
     secondChoice = null;
     firstPanel.hidden = true;
@@ -80,6 +83,7 @@ const initializeContact = (root: HTMLElement) => {
   };
 
   const showReady = () => {
+    root.dataset.contactGeometryState = firstChoice ?? "direct";
     firstPanel.hidden = true;
     hideSecondPanels();
     readyPanel.hidden = false;
